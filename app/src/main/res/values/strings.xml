@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">NoteGem</string>
+    <string name="app_name">Note Gem</string>
+
+    <string name="reminders_channel_description">Notification channel for sending tasks reminders notification</string>
+    <string name="reminders_channel_name">Reminders</string>
+    <string name="complete">Complete</string>
+
 </resources>
