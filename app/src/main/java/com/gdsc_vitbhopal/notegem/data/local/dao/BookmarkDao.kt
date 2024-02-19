@@ -15,6 +15,10 @@ interface BookmarkDao {
     @Query("SELECT * FROM bookmarks WHERE id = :id")
     suspend fun getBookmark(id: Int): Bookmark
 
+    @Query("SELECT * FROM bookmarks WHERE title LIKE '%' || :query || '%' OR description LIKE '%' || :query || '%'")
+    suspend fun getBookmarksByTitle(query: String): List<Bookmark>
+
+
     @Insert
     suspend fun insertBookmark(bookmark: Bookmark)
 
