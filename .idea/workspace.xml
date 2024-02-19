@@ -9,39 +9,7 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1e8c4e7f-eccd-4b10-80dc-de4e3092b48d" name="Changes" comment="Initial Commit">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/model/GroceryEntry.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/bookmarks/SearchBookmarksUseCase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/grocery/AddGroceryEntryUseCase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/grocery/DeleteGroceryEntryUseCase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/grocery/GetAllEntriesUseCase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/grocery/GetGroceryEntryUseCaes.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/grocery/SearchEntriesUseCase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/grocery/UpdateGroceryEntryUseCase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/notes/AddNoteUseCase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/notes/DeleteNoteUseCase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/notes/GetAllNotesUseCase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/notes/GetNoteUseCase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/notes/SearchNotesUseCase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/notes/UpdateNoteUseCase.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/util/grocery/Mood.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/local/NoteGemDatabase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/local/NoteGemDatabase.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/local/converters/SubTasksConverter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/local/converters/DBConverters.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/local/dao/BookmarkDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/local/dao/BookmarkDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/local/dao/GroceryDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/local/dao/GroceryDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/local/dao/NoteDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/local/dao/NoteDao.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/repository/BookmarkRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/repository/BookmarkRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/repository/GroceryRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/repository/GroceryRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/repository/NoteRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/repository/NoteRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/model/Bookmark.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/model/Bookmark.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/model/Grocery.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/model/Note.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/model/Note.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/model/Task.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/model/Task.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/repository/BookmarkRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/repository/BookmarkRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/repository/GroceryRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/repository/GroceryRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/repository/NoteRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/repository/NoteRepository.kt" afterDir="false" />
-    </list>
+    <list default="true" id="1e8c4e7f-eccd-4b10-80dc-de4e3092b48d" name="Changes" comment="Added some logics for groceries and notes." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -173,7 +141,15 @@
       <option name="project" value="LOCAL" />
       <updated>1707207761421</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Added some logics for groceries and notes.">
+      <option name="closed" value="true" />
+      <created>1708351178472</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1708351178472</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -189,6 +165,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
+    <MESSAGE value="Added some logics for groceries and notes." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added some logics for groceries and notes." />
   </component>
 </project>
