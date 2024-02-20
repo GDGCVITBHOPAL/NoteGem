@@ -25,11 +25,11 @@ fun NotificationManager.sendNotification(task: Task, context: Context, id: Int) 
         )
     val notification = NotificationCompat.Builder(context, Constants.REMINDERS_CHANNEL_ID)
 //       TODO() .setSmallIcon()
-        .setSmallIcon(R.drawable.baseline_done_24) // TODO change icon to app icon
+        .setSmallIcon(R.drawable.icon_small)
         .setContentTitle(task.title)
         .setContentText(task.description)
         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-        .addAction(R.drawable.baseline_done_24, getString(R.string.complete), completePendingIntent)
+        .addAction(R.drawable.ic_check, getString(R.string.complete), completePendingIntent)
         .setAutoCancel(true)
         .build()
 

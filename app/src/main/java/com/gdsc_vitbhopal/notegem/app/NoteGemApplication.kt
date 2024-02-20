@@ -9,6 +9,12 @@ import androidx.annotation.StringRes
 import com.gdsc_vitbhopal.notegem.R
 import dagger.hilt.android.HiltAndroidApp
 import com.gdsc_vitbhopal.notegem.util.Constants
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = Constants.SETTINGS_PREFERENCES)
+
 
 @HiltAndroidApp
 class NoteGemApplication : Application() {

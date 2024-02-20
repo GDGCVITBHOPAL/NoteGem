@@ -2,6 +2,7 @@ package com.gdsc_vitbhopal.notegem.di
 
 import android.content.Context
 import androidx.room.Room
+import com.gdsc_vitbhopal.notegem.app.dataStore
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,12 +19,14 @@ import com.gdsc_vitbhopal.notegem.data.repository.BookmarkRepositoryImpl
 import com.gdsc_vitbhopal.notegem.data.repository.CalendarRepositoryImpl
 import com.gdsc_vitbhopal.notegem.data.repository.GroceryRepositoryImpl
 import com.gdsc_vitbhopal.notegem.data.repository.NoteRepositoryImpl
+import com.gdsc_vitbhopal.notegem.data.repository.SettingsRepositoryImpl
 import com.gdsc_vitbhopal.notegem.data.repository.TaskRepositoryImpl
 import com.gdsc_vitbhopal.notegem.domain.repository.AlarmRepository
 import com.gdsc_vitbhopal.notegem.domain.repository.BookmarkRepository
 import com.gdsc_vitbhopal.notegem.domain.repository.CalendarRepository
 import com.gdsc_vitbhopal.notegem.domain.repository.GroceryRepository
 import com.gdsc_vitbhopal.notegem.domain.repository.NoteRepository
+import com.gdsc_vitbhopal.notegem.domain.repository.SettingsRepository
 import com.gdsc_vitbhopal.notegem.domain.repository.TaskRepository
 import javax.inject.Singleton
 
@@ -84,4 +87,8 @@ object AppModule {
     @Singleton
     @Provides
     fun provideAlarmRepository(alarmDao: AlarmDao): AlarmRepository = AlarmRepositoryImpl(alarmDao)
+
+    @Singleton
+    @Provides
+    fun provideSettingsRepository(@ApplicationContext context: Context): SettingsRepository = SettingsRepositoryImpl(context.dataStore)
 }
