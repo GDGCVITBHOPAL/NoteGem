@@ -1,4 +1,4 @@
-package com.gdsc_vitbhopal.notegem.presentation.main
+package com.gdsc_vitbhopal.notegem.presentation.main.components
 
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -13,6 +13,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.gdsc_vitbhopal.notegem.presentation.util.BottomNavItem
+import com.gdsc_vitbhopal.notegem.ui.theme.LightBlueCard
 
 @Composable
 fun MainBottomBar(
@@ -30,11 +31,10 @@ fun MainBottomBar(
                     else
                         painterResource(it.icon)
                     ,
-                    contentDescription = stringResource(it.title)
+                    contentDescription = stringResource(it.title),
                 ) },
                 label = {
-                    Spacer(modifier = Modifier.height(4.dp))
-                    Text(stringResource(it.title))
+                    Text(stringResource(it.title), style = MaterialTheme.typography.body2)
                 },
                 selected = currentDestination?.route == it.route,
                 onClick = {

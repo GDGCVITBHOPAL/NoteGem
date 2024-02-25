@@ -1,5 +1,6 @@
 package com.gdsc_vitbhopal.notegem.presentation.main
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -13,9 +14,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import androidx.navigation.navDeepLink
+import com.gdsc_vitbhopal.notegem.presentation.tasks.TaskDetailScreen
 import com.gdsc_vitbhopal.notegem.presentation.tasks.TasksScreen
 import com.gdsc_vitbhopal.notegem.presentation.util.Screen
 import com.gdsc_vitbhopal.notegem.ui.theme.DarkBackground
@@ -24,19 +29,22 @@ import com.gdsc_vitbhopal.notegem.util.settings.StartUpScreenSettings
 import com.gdsc_vitbhopal.notegem.util.settings.ThemeSettings
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 
-@ExperimentalAnimationApi
+@Suppress("BlockingMethodInNonBlockingContext")
+@OptIn(ExperimentalAnimationApi::class)
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
     private val viewModel: MainViewModel by viewModels()
 
+    @SuppressLint("AutoboxingStateCreation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             val themMode = viewModel.themMode.collectAsState(initial = ThemeSettings.AUTO.value)
             var startUpScreenSettings by remember { mutableStateOf(StartUpScreenSettings.DASHBOARD.value) }
-            LaunchedEffect(true){startUpScreenSettings = viewModel.defaultStartUpScreen.first()}
+            LaunchedEffect(true){ runBlocking { startUpScreenSettings = viewModel.defaultStartUpScreen.first() } }
             val startUpScreen =
                 if (startUpScreenSettings == StartUpScreenSettings.DASHBOARD.value)
                     Screen.DashboardScreen.route else Screen.HomeScreen.route
@@ -62,19 +70,33 @@ class MainActivity : ComponentActivity() {
                         composable(Screen.TasksScreen.route){
                             TasksScreen(navController = navController)
                         }
-                        composable(Screen.TaskAddScreen.route){}
-                        composable(Screen.TaskDetailScreen.route){}
+                        composable(
+                            Screen.TaskDetailScreen.route,
+                            arguments = listOf(navArgument(com.gdsc_vitbhopal.notegem.util.Constants.TASK_ID_ARG) { type = NavType.IntType }),
+                            deepLinks =
+                            listOf(
+                                navDeepLink {
+                                    uriPattern = "${com.gdsc_vitbhopal.notegem.util.Constants.TASK_DETAILS_URI}/{${com.gdsc_vitbhopal.notegem.util.Constants.TASK_ID_ARG}}" }
+                            )
+                        ){
+                            TaskDetailScreen(navController = navController, it.arguments?.getInt(com.gdsc_vitbhopal.notegem.util.Constants.TASK_ID_ARG)!!)
+                        }
+                        composable(Screen.TaskSearchScreen.route){}
                         composable(Screen.NotesScreen.route){}
                         composable(Screen.NoteAddScreen.route){}
                         composable(Screen.NoteDetailScreen.route){}
+                        composable(Screen.NoteSearchScreen.route){}
                         composable(Screen.GroceryScreen.route){}
                         composable(Screen.GroceryAddScreen.route){}
                         composable(Screen.GroceryDetailScreen.route){}
+                        composable(Screen.GrocerySearchScreen.route){}
                         composable(Screen.GrocerySummaryScreen.route){}
                         composable(Screen.BookmarksScreen.route){}
                         composable(Screen.BookmarkAddScreen.route){}
                         composable(Screen.BookmarkDetailScreen.route){}
+                        composable(Screen.BookmarkSearchScreen.route){}
                         composable(Screen.CalendarScreen.route){}
+                        composable(Screen.CalendarSearchScreen.route){}
                     }
                 }
             }

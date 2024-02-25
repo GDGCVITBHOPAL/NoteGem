@@ -2,12 +2,15 @@ package com.gdsc_vitbhopal.notegem.util.alarms
 
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.app.TaskStackBuilder
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
+import androidx.core.net.toUri
 import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.app.getString
 import com.gdsc_vitbhopal.notegem.domain.model.Task
+import com.gdsc_vitbhopal.notegem.presentation.main.MainActivity
 import com.gdsc_vitbhopal.notegem.util.Constants
 
 fun NotificationManager.sendNotification(task: Task, context: Context, id: Int) {
@@ -23,11 +26,24 @@ fun NotificationManager.sendNotification(task: Task, context: Context, id: Int) 
             completeIntent,
             PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
+
+    val taskDetailIntent = Intent(
+        Intent.ACTION_VIEW,
+        "${Constants.TASK_DETAILS_URI}/${task.id}".toUri(),
+        context,
+        MainActivity::class.java
+    )
+    val taskDetailsPendingIntent: PendingIntent? = TaskStackBuilder.create(context).run {
+        addNextIntentWithParentStack(taskDetailIntent)
+        getPendingIntent(0, PendingIntent.FLAG_IMMUTABLE or PendingIntent.FLAG_UPDATE_CURRENT)
+    }
+
     val notification = NotificationCompat.Builder(context, Constants.REMINDERS_CHANNEL_ID)
 //       TODO() .setSmallIcon()
         .setSmallIcon(R.drawable.icon_small)
         .setContentTitle(task.title)
         .setContentText(task.description)
+        .setContentIntent(taskDetailsPendingIntent)
         .setPriority(NotificationCompat.PRIORITY_DEFAULT)
         .addAction(R.drawable.ic_check, getString(R.string.complete), completePendingIntent)
         .setAutoCancel(true)

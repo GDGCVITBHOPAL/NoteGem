@@ -1,10 +1,13 @@
-package com.gdsc_vitbhopal.notegem.presentation.main
+package com.gdsc_vitbhopal.notegem.presentation.main.components
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.gdsc_vitbhopal.notegem.presentation.main.DashboardScreen
+import com.gdsc_vitbhopal.notegem.presentation.main.HomeScreen
+import com.gdsc_vitbhopal.notegem.presentation.main.SettingsScreen
 import com.gdsc_vitbhopal.notegem.presentation.util.Screen
 
 @ExperimentalAnimationApi

@@ -17,17 +17,20 @@ object Constants {
     const val NOTES_ORDER_KEY = "notes_order"
     const val TASKS_ORDER_KEY = "tasks_order"
     const val BOOKMARK_ORDER_KEY = "bookmark_order"
-    const val GROCERY_ORDER_KEY = "diary_order"
+    const val GROCERY_ORDER_KEY = "grocery_order"
 
     // NavArgs
     const val TASK_ID_ARG = "task_id"
     const val NOTE_ID_ARG = "note_id"
     const val BOOKMARK_ID_ARG = "bookmark_id"
-    const val GROCERY_ID_ARG = "diary_id"
+    const val GROCERY_ID_ARG = "grocery_id"
+    const val TASK_DETAILS_URI = "app://com.gdsc_vitbhopal.notegem/task_details"
 
     // lINKS
     const val PROJECT_GITHUB_LINK = "https://github.com/mhss1/ByBrain"
     const val PRIVACY_POLICY_LINK = "https://github.com/mhss1/ByBrain/blob/master/privacy-policy.md"
     const val KO_FI_LINK = "https://ko-fi.com/mhss1"
     const val BUY_ME_A_COFFEE_LINK = "https://www.buymeacoffee.com/mhss"
+    const val GITHUB_ISSUES_LINK = "https://github.com/mhss1/ByBrain/issues"
+
 }

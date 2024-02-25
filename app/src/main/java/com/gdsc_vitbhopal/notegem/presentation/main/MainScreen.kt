@@ -6,6 +6,8 @@ import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.gdsc_vitbhopal.notegem.presentation.main.components.MainBottomBar
+import com.gdsc_vitbhopal.notegem.presentation.main.components.NavigationGraph
 import com.gdsc_vitbhopal.notegem.presentation.util.BottomNavItem
 
 

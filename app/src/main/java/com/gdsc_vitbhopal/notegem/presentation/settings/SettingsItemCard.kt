@@ -7,26 +7,28 @@ import androidx.compose.material.Card
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 
 @Composable
 fun SettingsItemCard(
     modifier: Modifier = Modifier,
+    cornerRadius: Dp = 30.dp,
     onClick: () -> Unit = {},
     content: @Composable RowScope.() -> Unit,
 ) {
     Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 8.dp, horizontal = 12.dp),
-        shape = RoundedCornerShape(25.dp),
-        elevation = 6.dp,
+            .padding(vertical = 10.dp, horizontal = 14.dp),
+        shape = RoundedCornerShape(cornerRadius),
+        elevation = 5.dp,
     ) {
         Row(
             Modifier
                 .fillMaxWidth()
                 .clickable { onClick() }
-                .padding(horizontal = 12.dp, vertical = 16.dp),
+                .padding(horizontal = 14.dp, vertical = 18.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
             content = content

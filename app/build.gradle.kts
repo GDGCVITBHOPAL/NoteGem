@@ -25,6 +25,7 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -57,6 +58,16 @@ android {
     }
     androidResources {
         generateLocaleConfig = true
+    }
+}
+
+kotlin {
+    sourceSets {
+        all {
+            languageSettings {
+                optIn("kotlin.RequiresOptIn")
+            }
+        }
     }
 }
 

@@ -1,23 +1,15 @@
 package com.gdsc_vitbhopal.notegem.presentation.main
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.net.Uri
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -27,6 +19,8 @@ import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.gdsc_vitbhopal.notegem.BuildConfig
 import com.gdsc_vitbhopal.notegem.R
+import com.gdsc_vitbhopal.notegem.presentation.settings.DonationItem
+import com.gdsc_vitbhopal.notegem.presentation.settings.SettingsBasicLinkItem
 import com.gdsc_vitbhopal.notegem.presentation.settings.SettingsItemCard
 import com.gdsc_vitbhopal.notegem.presentation.settings.SettingsViewModel
 import com.gdsc_vitbhopal.notegem.util.Constants
@@ -45,14 +39,25 @@ fun SettingsScreen(
                 title = {
                     Text(
                         text = stringResource(R.string.settings),
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.h4.copy(fontWeight = FontWeight.Bold)
                     )
                 },
-                backgroundColor = MaterialTheme.colors.background
+                backgroundColor = MaterialTheme.colors.background,
+                elevation = 0.dp,
             )
         }
     ) {
         LazyColumn(modifier = Modifier.fillMaxWidth()) {
+            item {
+                Text(
+                    text = stringResource(R.string.general),
+                    style = MaterialTheme.typography.h6,
+                    modifier = Modifier
+                        .padding(vertical = 16.dp, horizontal = 12.dp)
+                )
+            }
+
             item {
                 val theme = viewModel
                     .getSettings(
@@ -105,155 +110,84 @@ fun SettingsScreen(
             item {
                 Text(
                     text = stringResource(R.string.about),
-                    style = MaterialTheme.typography.h5,
+                    style = MaterialTheme.typography.h6,
                     modifier = Modifier
                         .padding(vertical = 16.dp, horizontal = 12.dp)
                 )
             }
 
             item {
-                SettingsItemCard {
-                    Text(
-                        text = stringResource(id = R.string.app_version),
-                        style = MaterialTheme.typography.body1
-                    )
-                    Text(
-                        text = BuildConfig.VERSION_NAME,
-                        style = MaterialTheme.typography.body2
-                    )
-                }
+                SettingsBasicLinkItem(
+                    title = R.string.project_on_github,
+                    icon = R.drawable.ic_github,
+                    link = Constants.PROJECT_GITHUB_LINK
+                )
             }
 
             item {
-                val context = LocalContext.current
-                SettingsItemCard(
-                    onClick = {
-                        val intent = Intent(Intent.ACTION_VIEW)
-                        intent.data = Uri.parse(Constants.PROJECT_GITHUB_LINK)
-                        context.startActivity(intent)
-                    }
-                ) {
-                    Icon(painterResource(R.drawable.ic_github), contentDescription = "github")
-                    Spacer(modifier = Modifier.width(8.dp))
-                    Column(Modifier.fillMaxWidth()) {
-                        Text(
-                            text = stringResource(id = R.string.project_on_github),
-                            style = MaterialTheme.typography.body1
-                        )
-                        Spacer(modifier = Modifier.height(8.dp))
-                        Text(
-                            text = stringResource(id = R.string.my_brain_is_open_source),
-                            style = MaterialTheme.typography.body2
-                        )
-                    }
-                }
+                SettingsBasicLinkItem(
+                    title = R.string.app_version,
+                    icon = R.drawable.ic_code,
+                    subtitle = BuildConfig.VERSION_NAME,
+                )
             }
 
-            item {
-                val context = LocalContext.current
-                SettingsItemCard(
-                    onClick = {
-                        val intent = Intent(Intent.ACTION_VIEW)
-                        intent.data = Uri.parse(Constants.PRIVACY_POLICY_LINK)
-                        context.startActivity(intent)
-                    }
-                ) {
-                    Text(
-                        text = stringResource(id = R.string.privacy_policy),
-                        style = MaterialTheme.typography.body1,
-                        modifier = Modifier.fillMaxWidth()
-                    )
-                }
-            }
+//            item {
+//                SettingsBasicLinkItem(
+//                    title = R.string.privacy_policy,
+//                    icon = R.drawable.ic_privacy,
+//                    link = Constants.PRIVACY_POLICY_LINK
+//                )
+//            }
 
             item {
                 Text(
                     text = stringResource(R.string.product),
-                    style = MaterialTheme.typography.h5,
+                    style = MaterialTheme.typography.h6,
                     modifier = Modifier
                         .padding(vertical = 16.dp, horizontal = 12.dp)
                 )
             }
 
             item {
-                var visible by remember { mutableStateOf(false) }
-                SettingsItemCard(
-                    onClick = { visible = !visible }
-                ) {
-                    Column {
-                        Row(
-                            Modifier.fillMaxWidth(),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R.drawable.ic_heart),
-                                contentDescription = stringResource(id = R.string.support_the_app)
-                            )
-                            Spacer(modifier = Modifier.width(8.dp))
-                            Text(
-                                text = stringResource(id = R.string.support_the_app),
-                                style = MaterialTheme.typography.body1,
-                            )
-                        }
-                        Spacer(modifier = Modifier.height(4.dp))
-                        AnimatedVisibility(visible = visible) {
-                            val context = LocalContext.current
-                            LazyRow(
-                                horizontalArrangement = Arrangement.spacedBy(8.dp)
-                            ) {
-                                item {
-                                    Row(Modifier
-                                        .clickable {
-                                            val intent = Intent(Intent.ACTION_VIEW)
-                                            intent.data = Uri.parse(Constants.BUY_ME_A_COFFEE_LINK)
-                                            context.startActivity(intent)
-                                        }
-                                        .clip(RoundedCornerShape(25.dp))
-                                        .border(
-                                            color = Color.DarkGray,
-                                            width = 1.dp,
-                                            shape = RoundedCornerShape(25.dp)
-                                        ),
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        Text(
-                                            text = "BuyMeACoffee",
-                                            style = MaterialTheme.typography.body1,
-                                            modifier = Modifier.padding(8.dp)
-                                        )
-                                    }
-                                }
-                                item {
-                                    Row(Modifier
-                                        .clickable {
-                                            val intent = Intent(Intent.ACTION_VIEW)
-                                            intent.data = Uri.parse(Constants.KO_FI_LINK)
-                                            context.startActivity(intent)
-                                        }
-                                        .clip(RoundedCornerShape(25.dp))
-                                        .border(
-                                            color = Color.DarkGray,
-                                            width = 1.dp,
-                                            shape = RoundedCornerShape(25.dp)
-                                        ),
-                                        verticalAlignment = Alignment.CenterVertically
-                                    ) {
-                                        Text(
-                                            text = "Ko-fi",
-                                            style = MaterialTheme.typography.body1,
-                                            modifier = Modifier.padding(8.dp)
-                                        )
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                SettingsBasicLinkItem(
+                    title = R.string.request_feature_report_bug,
+                    icon = R.drawable.ic_feature_issue,
+                    link = Constants.GITHUB_ISSUES_LINK
+                )
             }
 
-            item {
-                Spacer(modifier = Modifier.height(100.dp))
-            }
+//            item {
+//                var visible by remember { mutableStateOf(false) }
+//
+//                                    Column{
+//                                SettingsBasicLinkItem(
+//                                    title = R.string.donate,
+//                                    icon = R.drawable.ic_heart,
+//                                    onClick = { visible = !visible }
+//                                )
+//                                Spacer(modifier = Modifier.height(4.dp))
+//                                AnimatedVisibility(visible = visible) {
+//                                    LazyRow(
+//                                        Modifier
+//                                            .fillMaxWidth()
+//                                            .padding(vertical = 8.dp, horizontal = 12.dp),
+//                                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+//                                    ) {
+//                                            item {
+//                                                DonationItem("PayPal", Constants.GITHUB_ISSUES_LINK, R.drawable.ic_github)
+//                                            }
+//                                            item {
+//                                                DonationItem("BuyMeACoffee", Constants.BUY_ME_A_COFFEE_LINK)
+//                                            }
+//                                            item {
+//                                                DonationItem("Ko-fi", Constants.KO_FI_LINK)
+//                                            }
+//                                        }
+//                                    }
+//                                }
+//                            }
+            item { Spacer(Modifier.height(60.dp)) }
         }
     }
 }
@@ -303,7 +237,7 @@ fun StartUpScreenSettingsItem(
         },
     ) {
         Text(
-            text = stringResource(R.string.default_start_up_screen),
+            text = stringResource(R.string.start_up_screen),
             style = MaterialTheme.typography.h6,
             fontWeight = FontWeight.Bold
         )
@@ -339,16 +273,4 @@ fun StartUpScreenSettingsItem(
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun ThemeItemPreview() {
-    ThemeSettingsItem()
-}
-
-@Preview
-@Composable
-fun StartUpItemPreview() {
-    StartUpScreenSettingsItem(0)
 }

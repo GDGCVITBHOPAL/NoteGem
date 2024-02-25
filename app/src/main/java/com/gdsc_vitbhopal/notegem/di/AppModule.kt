@@ -91,4 +91,8 @@ object AppModule {
     @Singleton
     @Provides
     fun provideSettingsRepository(@ApplicationContext context: Context): SettingsRepository = SettingsRepositoryImpl(context.dataStore)
+
+    @Singleton
+    @Provides
+    fun provideAppContext(@ApplicationContext context: Context) = context
 }

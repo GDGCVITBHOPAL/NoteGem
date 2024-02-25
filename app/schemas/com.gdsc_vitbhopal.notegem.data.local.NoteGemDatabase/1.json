@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "756f59967a753b658f70ea1a0794ce31",
+    "identityHash": "cfe85ede21677f8269d98d0c5ce5dfa9",
     "entities": [
       {
         "tableName": "notes",
@@ -62,7 +62,7 @@
       },
       {
         "tableName": "tasks",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`title` TEXT NOT NULL, `description` TEXT NOT NULL, `is_completed` INTEGER NOT NULL, `priority` INTEGER NOT NULL, `created_date` INTEGER NOT NULL, `updated_date` INTEGER NOT NULL, `sub_tasks` TEXT NOT NULL, `dueDate` INTEGER NOT NULL, `color` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`title` TEXT NOT NULL, `description` TEXT NOT NULL, `is_completed` INTEGER NOT NULL, `priority` INTEGER NOT NULL, `created_date` INTEGER NOT NULL, `updated_date` INTEGER NOT NULL, `sub_tasks` TEXT NOT NULL, `dueDate` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
         "fields": [
           {
             "fieldPath": "title",
@@ -109,12 +109,6 @@
           {
             "fieldPath": "dueDate",
             "columnName": "dueDate",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "color",
-            "columnName": "color",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -264,7 +258,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '756f59967a753b658f70ea1a0794ce31')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'cfe85ede21677f8269d98d0c5ce5dfa9')"
     ]
   }
 }
