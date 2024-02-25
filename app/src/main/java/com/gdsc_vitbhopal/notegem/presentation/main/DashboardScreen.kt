@@ -20,7 +20,6 @@ import com.gdsc_vitbhopal.notegem.presentation.main.components.DashboardCard
 import com.gdsc_vitbhopal.notegem.presentation.main.components.DashboardWideCard
 import com.gdsc_vitbhopal.notegem.presentation.util.Screen
 import com.gdsc_vitbhopal.notegem.ui.theme.DarkBlueCard
-import com.gdsc_vitbhopal.notegem.ui.theme.ModerateBlueCard
 import com.gdsc_vitbhopal.notegem.ui.theme.NoteGemTheme
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")

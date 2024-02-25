@@ -27,10 +27,7 @@ object Constants {
     const val TASK_DETAILS_URI = "app://com.gdsc_vitbhopal.notegem/task_details"
 
     // lINKS
-    const val PROJECT_GITHUB_LINK = "https://github.com/mhss1/ByBrain"
-    const val PRIVACY_POLICY_LINK = "https://github.com/mhss1/ByBrain/blob/master/privacy-policy.md"
-    const val KO_FI_LINK = "https://ko-fi.com/mhss1"
-    const val BUY_ME_A_COFFEE_LINK = "https://www.buymeacoffee.com/mhss"
-    const val GITHUB_ISSUES_LINK = "https://github.com/mhss1/ByBrain/issues"
+    const val PROJECT_SOURCE_CODE = "https://github.com/manojkp08/NoteGem"
+    const val GITHUB_ISSUES_LINK = "https://github.com/DSCVITBHOPAL/NoteGem/issues"
 
 }

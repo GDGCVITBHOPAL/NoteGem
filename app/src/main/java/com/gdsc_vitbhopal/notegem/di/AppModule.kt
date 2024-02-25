@@ -36,7 +36,7 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideMyBrainDataBase(
+    fun provideNoteGemDataBase(
         @ApplicationContext context: Context
     ) = Room.databaseBuilder(
         context,

@@ -1,11 +1,9 @@
 package com.gdsc_vitbhopal.notegem.presentation.main
 
 import android.annotation.SuppressLint
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -13,13 +11,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.gdsc_vitbhopal.notegem.BuildConfig
 import com.gdsc_vitbhopal.notegem.R
-import com.gdsc_vitbhopal.notegem.presentation.settings.DonationItem
 import com.gdsc_vitbhopal.notegem.presentation.settings.SettingsBasicLinkItem
 import com.gdsc_vitbhopal.notegem.presentation.settings.SettingsItemCard
 import com.gdsc_vitbhopal.notegem.presentation.settings.SettingsViewModel
@@ -120,7 +116,7 @@ fun SettingsScreen(
                 SettingsBasicLinkItem(
                     title = R.string.project_on_github,
                     icon = R.drawable.ic_github,
-                    link = Constants.PROJECT_GITHUB_LINK
+                    link = Constants.PROJECT_SOURCE_CODE
                 )
             }
 

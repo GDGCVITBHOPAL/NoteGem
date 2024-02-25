@@ -51,7 +51,6 @@
     <string name="delete_task_confirmation_title">Delete Task?</string>
     <string name="delete_task_confirmation_message">Are you sure you want to delete the Task: \n \"%1$s\""</string>
     <string name="cancel">Cancel</string>
-    <string name="donate_with">Donate with:</string>
     <string name="thank_you_for_support">Thank you for your support ❤</string>
     <string name="no_tasks_yet">You don\'t have any tasks\n Click the \"+\" button the add a new Task</string>
 
