@@ -10,29 +10,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1e8c4e7f-eccd-4b10-80dc-de4e3092b48d" name="Changes" comment="Added some logics for groceries and notes.">
-      <change afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/components/DashboardCards.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/settings/DonationItem.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/settings/SettingsBasicLinkItem.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/AddTaskBottomSheetContent.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/SubTaskItem.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/TaskDetailScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/TaskEvent.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/TaskItem.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/TasksViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/util/date/DateUtils.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/baseline_search_24.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bookmarks_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_code.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_delete.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_feature_issue.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_privacy.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/notes_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/task_logo.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/kanit_light.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/font/kanit_regular.ttf" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/font_certs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/values/preloaded_fonts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/TasksSearchScreen.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/bookmark.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/done.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/grocery.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/notes.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/schedule.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.0/fileHashes/fileHashes.bin" afterDir="false" />
@@ -41,58 +24,30 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/schemas/com.gdsc_vitbhopal.notegem.data.local.NoteGemDatabase/1.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/schemas/com.gdsc_vitbhopal.notegem.data.local.NoteGemDatabase/1.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/local/dao/TaskDao.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/local/dao/TaskDao.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/repository/TaskRepositoryImpl.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/data/repository/TaskRepositoryImpl.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/di/AppModule.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/di/AppModule.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/model/Task.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/model/Task.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/repository/TaskRepository.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/repository/TaskRepository.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/alarm/AddAlarmUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/alarm/AddAlarmUseCase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/alarm/DeleteAlarmUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/alarm/DeleteAlarmUseCase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/tasks/GetAllTasksUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/tasks/GetAllTasksUseCase.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/tasks/SearchTasksUseCase.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/domain/useCase/tasks/SearchTasksUseCase.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/DashboardScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/DashboardScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/HomeScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/HomeScreen.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/MainBottomBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/components/MainBottomBar.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/MainScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/MainScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/NavigationGraph.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/components/NavigationGraph.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/SettingsScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/SettingsScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/settings/SettingsItemCard.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/settings/SettingsItemCard.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/components/DashboardCards.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/components/DashboardCards.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/components/MainBottomBar.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/components/MainBottomBar.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/AddTaskBottomSheetContent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/AddTaskBottomSheetContent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/SubTaskItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/SubTaskItem.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/TaskDetailScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/TaskDetailScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/TaskEvent.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/TaskEvent.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/TaskItem.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/TaskItem.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/TasksScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/TasksScreen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/util/Screen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/util/Screen.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/ui/theme/Color.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/ui/theme/Color.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/TasksViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/TasksViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/ui/theme/Theme.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/ui/theme/Theme.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/ui/theme/Type.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/ui/theme/Type.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/util/Constants.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/util/Constants.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/util/alarms/BootBradcastReceiver.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/util/alarms/BootBradcastReceiver.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/util/alarms/AlarmUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/util/alarms/AlarmUtil.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/util/alarms/NotificationUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/util/alarms/NotificationUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/util/date/DateUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/util/date/DateUtils.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/util/settings/SettingsUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/util/settings/SettingsUtil.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_add.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_add.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_alarm.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_alarm.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_auto.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_auto.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_check.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_check.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_dark.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_dark.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_dashboard.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_dashboard.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_dashboard_filled.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_dashboard_filled.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_github.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_github.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_happy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_happy.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_heart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_heart.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_home.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_home.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_home_filled.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_home_filled.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_ok_face.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_ok_face.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_pie_chart.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_pie_chart.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_pin.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_pin.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_sad.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_sad.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_save.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_save.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_serach.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_serach.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_settings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_settings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_settings_filled.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_settings_filled.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_settings_sliders.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_settings_sliders.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_sun.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_sun.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_very_happy.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_very_happy.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/drawable/ic_very_sad.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_very_sad.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,8 +67,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Class" />
         <option value="resourceFile" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -128,28 +83,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;ResourceManagerPrefKey.ResourceType&quot;: &quot;FONT&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;dart.analysis.tool.window.visible&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/sparsh/Desktop/AppDev/GDSC/NoteGem&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;AndroidSdkUpdater&quot;,
-    &quot;show.migrate.to.gradle.popup&quot;: &quot;false&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ResourceManagerPrefKey.ResourceType": "FONT",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "dart.analysis.tool.window.visible": "false",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "/home/sparsh/Desktop/AppDev/GDSC/NoteGem",
+    "settings.editor.selected.configurable": "preferences.updates",
+    "show.migrate.to.gradle.popup": "false"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\manoj\OneDrive\Desktop\NoteGem\app\src\main\res\font" />
       <recent name="C:\Users\manoj\OneDrive\Desktop\NoteGem\app\src\main\res\drawable" />
+      <recent name="C:\Users\manoj\OneDrive\Desktop\NoteGem\app\src\main\res\font" />
       <recent name="C:\Users\manoj\OneDrive\Desktop\NoteGem\app\src\main\java\com\gdsc_vitbhopal\notegem\presentation\main\components" />
     </key>
   </component>
@@ -274,6 +229,11 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/main/SettingsScreen.kt</url>
           <line>196</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="kotlin-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/gdsc_vitbhopal/notegem/presentation/tasks/TaskDetailScreen.kt</url>
+          <line>1</line>
+          <option name="timeStamp" value="2" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

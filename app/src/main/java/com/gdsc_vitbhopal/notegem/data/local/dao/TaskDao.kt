@@ -7,17 +7,20 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.gdsc_vitbhopal.notegem.domain.model.Task
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TaskDao {
     @Query("SELECT * FROM tasks")
-    suspend fun getAllTasks(): List<Task>
+//    suspend fun getAllTasks(): List<Task>
+    fun getAllTasks(): Flow<List<Task>>
 
     @Query("SELECT * FROM tasks WHERE id = :id")
     suspend fun getTask(id: Int): Task
 
     @Query("SELECT * FROM tasks WHERE title LIKE '%' || :title || '%'")
-    suspend fun getTasksByTitle(title: String): List<Task>
+//    suspend fun getTasksByTitle(title: String): List<Task>
+    fun getTasksByTitle(title: String): Flow<List<Task>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTask(task: Task): Long

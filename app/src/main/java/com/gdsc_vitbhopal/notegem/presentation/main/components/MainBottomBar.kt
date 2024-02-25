@@ -14,6 +14,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.gdsc_vitbhopal.notegem.presentation.util.BottomNavItem
 import com.gdsc_vitbhopal.notegem.ui.theme.LightBlueCard
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
 fun MainBottomBar(

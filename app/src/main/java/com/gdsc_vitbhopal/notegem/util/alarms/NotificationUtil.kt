@@ -12,6 +12,8 @@ import com.gdsc_vitbhopal.notegem.app.getString
 import com.gdsc_vitbhopal.notegem.domain.model.Task
 import com.gdsc_vitbhopal.notegem.presentation.main.MainActivity
 import com.gdsc_vitbhopal.notegem.util.Constants
+import com.gdsc_vitbhopal.notegem.util.settings.Priority
+import com.gdsc_vitbhopal.notegem.util.settings.toInt
 
 fun NotificationManager.sendNotification(task: Task, context: Context, id: Int) {
 
@@ -44,14 +46,17 @@ fun NotificationManager.sendNotification(task: Task, context: Context, id: Int) 
         .setContentTitle(task.title)
         .setContentText(task.description)
         .setContentIntent(taskDetailsPendingIntent)
-        .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+        .setPriority(
+            when (task.priority) {
+                Priority.LOW.toInt() -> NotificationCompat.PRIORITY_DEFAULT
+                Priority.MEDIUM.toInt() -> NotificationCompat.PRIORITY_HIGH
+                Priority.HIGH.toInt() -> NotificationCompat.PRIORITY_MAX
+                else -> NotificationCompat.PRIORITY_DEFAULT
+            }
+        )
         .addAction(R.drawable.ic_check, getString(R.string.complete), completePendingIntent)
         .setAutoCancel(true)
         .build()
 
     notify(id, notification)
-}
-
-fun NotificationManager.cancelNotification(id: Int) {
-    cancel(id)
 }

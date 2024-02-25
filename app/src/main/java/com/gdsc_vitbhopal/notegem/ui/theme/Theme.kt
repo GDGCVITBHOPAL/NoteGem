@@ -17,9 +17,9 @@ private val DarkColorPalette = darkColors(
 )
 
 private val LightColorPalette = lightColors(
-    primary = PrimaryColor,
-    primaryVariant = PrimaryDarkColor,
-    secondary = SecondaryColor,
+    primary = BlueSurface,
+    primaryVariant = ModerateBlueCard,
+    secondary = DarkBlueCard,
     background = Color.White
 )
 

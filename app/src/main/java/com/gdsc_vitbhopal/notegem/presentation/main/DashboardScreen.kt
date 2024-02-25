@@ -9,7 +9,6 @@ import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -18,8 +17,9 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.presentation.main.components.DashboardCard
-import com.gdsc_vitbhopal.notegem.presentation.main.components.SpaceWideCard
+import com.gdsc_vitbhopal.notegem.presentation.main.components.DashboardWideCard
 import com.gdsc_vitbhopal.notegem.presentation.util.Screen
+import com.gdsc_vitbhopal.notegem.ui.theme.DarkBlueCard
 import com.gdsc_vitbhopal.notegem.ui.theme.ModerateBlueCard
 import com.gdsc_vitbhopal.notegem.ui.theme.NoteGemTheme
 
@@ -48,16 +48,16 @@ fun DashboardScreen(
                     DashboardCard(
                         modifier = Modifier.weight(1f, fill = true),
                         title = stringResource(R.string.notes),
-                        image = R.drawable.notes_logo,
-                        backgroundColor = ModerateBlueCard
+                        image = R.drawable.notes,
+                        backgroundColor = DarkBlueCard
                     ){
                         navController.navigate(Screen.NotesScreen.route)
                     }
                     DashboardCard(
                         modifier = Modifier.weight(1f, fill = true),
                         title = stringResource(R.string.tasks),
-                        image = R.drawable.task_logo,
-                        backgroundColor = ModerateBlueCard
+                        image = R.drawable.done,
+                        backgroundColor = DarkBlueCard
                     ){
                         navController.navigate(Screen.TasksScreen.route)
                     }
@@ -68,26 +68,26 @@ fun DashboardScreen(
                     DashboardCard(
                         modifier = Modifier.weight(1f, fill = true),
                         title = stringResource(R.string.grocery),
-                        image = R.drawable.task_logo,
-                        backgroundColor = ModerateBlueCard
+                        image = R.drawable.grocery,
+                        backgroundColor = DarkBlueCard
                     ){
                         navController.navigate(Screen.GroceryScreen.route)
                     }
                     DashboardCard(
                         modifier = Modifier.weight(1f, fill = true),
                         title = stringResource(R.string.bookmarks),
-                        image = R.drawable.bookmarks_logo,
-                        backgroundColor = ModerateBlueCard
+                        image = R.drawable.bookmark,
+                        backgroundColor = DarkBlueCard
                     ){
                         navController.navigate(Screen.BookmarksScreen.route)
                     }
                 }
             }
             item {
-                SpaceWideCard(
+                DashboardWideCard(
                     title = stringResource(R.string.calendar),
-                    image = R.drawable.bookmarks_logo,
-                    backgroundColor = ModerateBlueCard
+                    image = R.drawable.schedule,
+                    backgroundColor = DarkBlueCard
                 ){
                     navController.navigate(Screen.CalendarScreen.route)
                 }

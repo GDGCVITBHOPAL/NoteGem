@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.ui.theme.Blue
+import com.gdsc_vitbhopal.notegem.ui.theme.ModerateBlueCard
 
 
 @Composable
@@ -30,13 +31,13 @@ fun DashboardCard(
         modifier = modifier.padding(10.dp),
         shape = RoundedCornerShape(25.dp),
         backgroundColor = backgroundColor,
-        elevation = 10.dp
+        elevation = 20.dp
     ) {
         Column(
             Modifier
                 .clickable { onClick() }
-                .aspectRatio(1.0f)
-                .padding(18.dp),
+                .padding(18.dp)
+                .aspectRatio(1.0f),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Text(text = title, style = MaterialTheme.typography.h6.copy(color = Color.White))
@@ -52,7 +53,7 @@ fun DashboardCard(
 }
 
 @Composable
-fun SpaceWideCard(
+fun DashboardWideCard(
     title: String,
     image: Int,
     backgroundColor: Color = Color.White,
@@ -62,7 +63,7 @@ fun SpaceWideCard(
         modifier = Modifier.padding(10.dp),
         shape = RoundedCornerShape(25.dp),
         backgroundColor = backgroundColor,
-        elevation = 10.dp
+        elevation = 20.dp
     ) {
         Column(
             Modifier
@@ -88,10 +89,13 @@ fun SpaceWideCard(
 
 @Preview
 @Composable
-fun SpaceRegularCardPreview() {
-    DashboardCard(
-        "Notes",
-        R.drawable.notes_logo,
-        Blue
-    )
+fun DashboardCardPreview() {
+    Column {
+        DashboardCard(
+            "Notes",
+            R.drawable.notes_logo,
+            Blue
+        )
+        DashboardWideCard("Bookmarks", R.drawable.bookmarks_logo, ModerateBlueCard)
+    }
 }
