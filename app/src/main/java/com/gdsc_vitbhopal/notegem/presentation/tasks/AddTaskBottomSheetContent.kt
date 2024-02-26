@@ -45,6 +45,7 @@ fun AddTaskBottomSheetContent(
     val context = LocalContext.current
     Column(
         modifier = Modifier
+            .heightIn(max = 600.dp)
             .defaultMinSize(minHeight = 1.dp)
             .padding(horizontal = 16.dp, vertical = 24.dp)
             .verticalScroll(rememberScrollState())
