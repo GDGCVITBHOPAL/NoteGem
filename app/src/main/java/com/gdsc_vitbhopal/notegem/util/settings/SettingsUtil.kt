@@ -56,6 +56,15 @@ enum class Priority( @StringRes val title: Int, val color: Color) {
     HIGH(R.string.high, Red)
 }
 
+enum class ItemView(@StringRes val title: Int, val value: Int) {
+    LIST(R.string.list, 0),
+    GRID(R.string.grid, 1)
+}
+
+fun Int.toNotesView(): ItemView {
+    return ItemView.values().first { it.value == this }
+}
+
 
 fun Int.toPriority(): Priority {
     return when (this) {
@@ -74,7 +83,7 @@ fun Priority.toInt(): Int {
     }
 }
 
-fun Int.toTaskOrder(): Order {
+fun Int.toOrder(): Order {
     return when(this){
         0 -> Order.Alphabetical(OrderType.ASC())
         1 -> Order.DateCreated(OrderType.ASC())

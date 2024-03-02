@@ -20,6 +20,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import androidx.navigation.navDeepLink
+import com.gdsc_vitbhopal.notegem.presentation.bookmarks.BookmarkDetailsScreen
+import com.gdsc_vitbhopal.notegem.presentation.bookmarks.BookmarkSearchScreen
+import com.gdsc_vitbhopal.notegem.presentation.bookmarks.BookmarksScreen
+import com.gdsc_vitbhopal.notegem.presentation.notes.NoteDetailsScreen
+import com.gdsc_vitbhopal.notegem.presentation.notes.NotesScreen
+import com.gdsc_vitbhopal.notegem.presentation.notes.NotesSearchScreen
 import com.gdsc_vitbhopal.notegem.presentation.tasks.TaskDetailScreen
 import com.gdsc_vitbhopal.notegem.presentation.tasks.TasksScreen
 import com.gdsc_vitbhopal.notegem.presentation.tasks.TasksSearchScreen
@@ -29,6 +35,7 @@ import com.gdsc_vitbhopal.notegem.ui.theme.NoteGemTheme
 import com.gdsc_vitbhopal.notegem.util.Constants
 import com.gdsc_vitbhopal.notegem.util.settings.StartUpScreenSettings
 import com.gdsc_vitbhopal.notegem.util.settings.ThemeSettings
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
@@ -46,6 +53,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             val themMode = viewModel.themMode.collectAsState(initial = ThemeSettings.AUTO.value)
             var startUpScreenSettings by remember { mutableStateOf(StartUpScreenSettings.DASHBOARD.value) }
+            val systemUiController = rememberSystemUiController()
             LaunchedEffect(true) {
                 runBlocking {
                     startUpScreenSettings = viewModel.defaultStartUpScreen.first()
@@ -59,7 +67,13 @@ class MainActivity : ComponentActivity() {
                 ThemeSettings.LIGHT.value -> false
                 else -> isSystemInDarkTheme()
             }
-            handleThemeChange(isDarkMode)
+//            handleThemeChange(isDarkMode)
+            SideEffect{
+                systemUiController.setSystemBarsColor(
+                    if (isDarkMode) DarkBackground else Color.White,
+                    darkIcons = !isDarkMode
+                )
+            }
             NoteGemTheme(darkTheme = isDarkMode) {
                 val navController = rememberNavController()
                 Surface(
@@ -76,8 +90,23 @@ class MainActivity : ComponentActivity() {
                                 mainNavController = navController
                             )
                         }
-                        composable(Screen.TasksScreen.route){
-                            TasksScreen(navController = navController)
+                        composable(
+                            Screen.TasksScreen.route,
+                            arguments = listOf(navArgument(Constants.ADD_TASK_TILE_ARG) {
+                                type = NavType.BoolType
+                                defaultValue = false
+                            }),
+                            deepLinks =
+                            listOf(
+                                navDeepLink {
+                                    uriPattern = "${Constants.ADD_TASK_URI}/{${Constants.ADD_TASK_TILE_ARG}}"
+                                }
+                            )
+                        ) {
+                            TasksScreen(
+                                navController = navController,
+                                addTask = it.arguments?.getBoolean(Constants.ADD_TASK_TILE_ARG) ?: false
+                            )
                         }
                         composable(
                             Screen.TaskDetailScreen.route,
@@ -97,19 +126,55 @@ class MainActivity : ComponentActivity() {
                         composable(Screen.TaskSearchScreen.route) {
                             TasksSearchScreen(navController = navController)
                         }
-                        composable(Screen.NotesScreen.route) {}
+//                        composable(Screen.NotesScreen.route) {}
+                        composable(
+                            Screen.NotesScreen.route
+                        ) {
+                            NotesScreen(navController = navController)
+                        }
                         composable(Screen.NoteAddScreen.route) {}
-                        composable(Screen.NoteDetailScreen.route) {}
-                        composable(Screen.NoteSearchScreen.route) {}
+//                        composable(Screen.NoteDetailScreen.route) {}
+                        composable(
+                            Screen.NoteDetailsScreen.route,
+                            arguments = listOf(navArgument(Constants.NOTE_ID_ARG) {
+                                type = NavType.IntType
+                            })
+                        ) {
+                            NoteDetailsScreen(
+                                navController,
+                                it.arguments?.getInt(Constants.NOTE_ID_ARG)!!
+                            )
+                        }
+//                        composable(Screen.NoteSearchScreen.route) {}
+                        composable(Screen.NoteSearchScreen.route) {
+                            NotesSearchScreen(navController = navController)
+                        }
                         composable(Screen.GroceryScreen.route) {}
                         composable(Screen.GroceryAddScreen.route) {}
                         composable(Screen.GrocerySearchScreen.route) {}
                         composable(Screen.GroceryDetailScreen.route) {}
                         composable(Screen.GrocerySummaryScreen.route) {}
-                        composable(Screen.BookmarksScreen.route) {}
-                        composable(Screen.BookmarkAddScreen.route) {}
-                        composable(Screen.BookmarkDetailScreen.route) {}
-                        composable(Screen.BookmarkSearchScreen.route) {}
+//                        composable(Screen.BookmarksScreen.route) {}
+//                        composable(Screen.BookmarkAddScreen.route) {}
+//                        composable(Screen.BookmarkDetailScreen.route) {}
+//                        composable(Screen.BookmarkSearchScreen.route) {}
+                        composable(Screen.BookmarksScreen.route) {
+                            BookmarksScreen(navController = navController)
+                        }
+                        composable(
+                            Screen.BookmarkDetailScreen.route,
+                            arguments = listOf(navArgument(Constants.BOOKMARK_ID_ARG) {
+                                type = NavType.IntType
+                            })
+                        ) {
+                            BookmarkDetailsScreen(
+                                navController = navController,
+                                it.arguments?.getInt(Constants.BOOKMARK_ID_ARG)!!
+                            )
+                        }
+                        composable(Screen.BookmarkSearchScreen.route) {
+                            BookmarkSearchScreen(navController = navController)
+                        }
                         composable(Screen.CalendarScreen.route) {}
                         composable(Screen.CalendarSearchScreen.route) {}
                     }
@@ -118,9 +183,9 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-    private fun handleThemeChange(isDarkMode: Boolean) {
-        window.statusBarColor = if (isDarkMode) DarkBackground.toArgb() else Color.White.toArgb()
-        window.navigationBarColor =
-            if (isDarkMode) DarkBackground.toArgb() else Color.White.toArgb()
-    }
+//    private fun handleThemeChange(isDarkMode: Boolean) {
+//        window.statusBarColor = if (isDarkMode) DarkBackground.toArgb() else Color.White.toArgb()
+//        window.navigationBarColor =
+//            if (isDarkMode) DarkBackground.toArgb() else Color.White.toArgb()
+//    }
 }

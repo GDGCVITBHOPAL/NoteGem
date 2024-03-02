@@ -1,9 +1,11 @@
 package com.gdsc_vitbhopal.notegem.domain.repository
 
 import com.gdsc_vitbhopal.notegem.domain.model.Note
+import kotlinx.coroutines.flow.Flow
 
 interface NoteRepository {
-    suspend fun getAllNotes(): List<Note>
+//    suspend fun getAllNotes(): List<Note>
+    fun getAllNotes(): Flow<List<Note>>
 
     suspend fun getNote(id: Int): Note
 

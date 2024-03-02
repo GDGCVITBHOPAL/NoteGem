@@ -25,7 +25,7 @@ import com.gdsc_vitbhopal.notegem.util.Constants
 import com.gdsc_vitbhopal.notegem.util.settings.Order
 import com.gdsc_vitbhopal.notegem.util.settings.OrderType
 import com.gdsc_vitbhopal.notegem.util.settings.toInt
-import com.gdsc_vitbhopal.notegem.util.settings.toTaskOrder
+import com.gdsc_vitbhopal.notegem.util.settings.toOrder
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
@@ -66,7 +66,8 @@ class TasksViewModel @Inject constructor(
                     false
                 )
             ){ order, showCompleted ->
-                getTasks(order.toTaskOrder(), showCompleted)
+//                getTasks(order.toTaskOrder(), showCompleted)
+                getTasks(order.toOrder(), showCompleted)
             }.collect()
         }
     }
@@ -144,6 +145,11 @@ class TasksViewModel @Inject constructor(
                 if (event.task.dueDate != 0L)
                     deleteAlarm(event.task.id)
                 taskDetailsUiState = taskDetailsUiState.copy(navigateUp = true)
+            }
+            is TaskEvent.GetTask -> viewModelScope.launch {
+                taskDetailsUiState = taskDetailsUiState.copy(
+                    task = getTaskUseCase(event.taskId)
+                )
             }
         }
     }

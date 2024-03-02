@@ -25,6 +25,7 @@ import androidx.navigation.NavHostController
 import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.domain.model.SubTask
 import com.gdsc_vitbhopal.notegem.domain.model.Task
+import com.gdsc_vitbhopal.notegem.presentation.util.Screen
 import com.gdsc_vitbhopal.notegem.util.date.formatDate
 import com.gdsc_vitbhopal.notegem.util.settings.Priority
 import com.gdsc_vitbhopal.notegem.util.settings.toInt
@@ -39,7 +40,8 @@ fun TaskDetailScreen(
     viewModel: TasksViewModel = hiltViewModel()
 ) {
     LaunchedEffect(true) {
-        viewModel.getTask(taskId)
+//        viewModel.getTask(taskId)
+        viewModel.onEvent(TaskEvent.GetTask(taskId))
     }
     val uiState = viewModel.taskDetailsUiState
     val scaffoldState = rememberScaffoldState()
@@ -66,7 +68,8 @@ fun TaskDetailScreen(
     LaunchedEffect(uiState) {
         if (uiState.navigateUp) {
             openDialog = false
-            navController.navigateUp()
+//            navController.navigateUp()
+            navController.popBackStack()
         }
         if (uiState.error != null) {
             scaffoldState.snackbarHostState.showSnackbar(
@@ -86,7 +89,8 @@ fun TaskDetailScreen(
                 subTasks = subTasks
             ),
             {
-                navController.navigateUp()
+//                navController.navigateUp()
+                navController.popBackStack(route = Screen.TasksScreen.route, inclusive = false)
             }
         ) {
             viewModel.onEvent(TaskEvent.UpdateTask(it, dueDate != uiState.task.dueDate))
