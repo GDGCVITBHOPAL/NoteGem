@@ -6,6 +6,7 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
+import androidx.glance.color.DynamicThemeColorProviders
 
 private val DarkColorPalette = darkColors(
     primary = PrimaryColor,
@@ -17,12 +18,16 @@ private val DarkColorPalette = darkColors(
 )
 
 private val LightColorPalette = lightColors(
-    primary = BlueSurface,
-    primaryVariant = ModerateBlueCard,
-    secondary = DarkBlueCard,
-    background = Color.White
+    primary = Color.Black,
+    primaryVariant = Color.Black,
+    background = BlueSurface,
+    secondary = Color.Black,
+    surface = SettingTileColor,
+    onPrimary = Color.Black,
+    onSecondary = Color.Black,
+    onBackground = Color.Black,
+    onSurface = Color.Black
 )
-
 @Composable
 fun NoteGemTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val colors = if (darkTheme) {

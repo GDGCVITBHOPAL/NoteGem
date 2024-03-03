@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NoteGem">
         <activity
-            android:name=".presentation.main.MainActivity"
+            android:name=".controller.main.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.NoteGem">
             <intent-filter>
@@ -44,7 +44,7 @@
             android:enabled="true" />
 
 <!--        <service-->
-<!--            android:name=".presentation.tasks.AddTaskTileService"-->
+<!--            android:name=".controller.tasks.AddTaskTileService"-->
 <!--            android:enabled="true"-->
 <!--            android:exported="true"-->
 <!--            android:label="@string/add_task"-->
@@ -56,7 +56,7 @@
 <!--            </intent-filter>-->
 <!--        </service>-->
         <activity
-            android:name=".presentation.bookmarks.SaveArticleActivity"
+            android:name=".controller.bookmarks.SaveArticleActivity"
             android:theme="@android:style/Theme.NoDisplay"
             android:autoRemoveFromRecents="true"
             android:excludeFromRecents="true"

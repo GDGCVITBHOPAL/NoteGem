@@ -12,6 +12,10 @@ val Kanit = FontFamily(
     Font(R.font.kanit_light),
     Font(R.font.kanit_regular, FontWeight.Bold)
 )
+
+val BebeasNeue = FontFamily(
+    Font(R.font.bebas_neue, FontWeight.Bold)
+)
 // Set of Material typography styles to start with
 val Typography = Typography(
     body1 = TextStyle(
@@ -45,7 +49,7 @@ val Typography = Typography(
         fontSize = 48.sp
     ),
     h4 = TextStyle(
-        fontFamily = Kanit,
+        fontFamily = BebeasNeue,
         fontWeight = FontWeight.Normal,
         fontSize = 34.sp
     ),
@@ -55,8 +59,8 @@ val Typography = Typography(
         fontSize = 24.sp
     ),
     h6 = TextStyle(
-        fontFamily = Kanit,
-        fontWeight = FontWeight.Normal,
+        fontFamily = BebeasNeue,
+        fontWeight = FontWeight.SemiBold,
         fontSize = 20.sp
     )
     /* Other default text styles to override

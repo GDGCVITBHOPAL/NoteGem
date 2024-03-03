@@ -10,7 +10,7 @@ import androidx.core.net.toUri
 import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.app.getString
 import com.gdsc_vitbhopal.notegem.domain.model.Task
-import com.gdsc_vitbhopal.notegem.presentation.main.MainActivity
+import com.gdsc_vitbhopal.notegem.controller.main.MainActivity
 import com.gdsc_vitbhopal.notegem.util.Constants
 import com.gdsc_vitbhopal.notegem.util.settings.Priority
 import com.gdsc_vitbhopal.notegem.util.settings.toInt

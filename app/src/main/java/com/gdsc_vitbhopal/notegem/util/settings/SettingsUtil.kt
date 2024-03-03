@@ -7,6 +7,7 @@ import com.gdsc_vitbhopal.notegem.app.getString
 import com.gdsc_vitbhopal.notegem.ui.theme.Green
 import com.gdsc_vitbhopal.notegem.ui.theme.Orange
 import com.gdsc_vitbhopal.notegem.ui.theme.Red
+import com.gdsc_vitbhopal.notegem.ui.theme.Yellow
 
 enum class ThemeSettings(val value: Int) {
     LIGHT(0),
@@ -52,7 +53,7 @@ sealed class Order(val orderType: OrderType, val orderTitle: String){
 
 enum class Priority( @StringRes val title: Int, val color: Color) {
     LOW(R.string.low, Green),
-    MEDIUM(R.string.medium, Orange),
+    MEDIUM(R.string.medium, Yellow),
     HIGH(R.string.high, Red)
 }
 
