@@ -4,7 +4,7 @@ import com.gdsc_vitbhopal.notegem.domain.model.GroceryEntry
 import com.gdsc_vitbhopal.notegem.domain.repository.GroceryRepository
 import javax.inject.Inject
 
-class UpdateDiaryEntryUseCase @Inject constructor(
+class UpdateGroceryEntryUseCase @Inject constructor(
     private val groceryRepository: GroceryRepository
 ) {
     suspend operator fun invoke(entry: GroceryEntry) = groceryRepository.updateEntry(entry)

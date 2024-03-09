@@ -22,6 +22,10 @@ import androidx.navigation.navDeepLink
 import com.gdsc_vitbhopal.notegem.controller.bookmarks.BookmarkDetailsScreen
 import com.gdsc_vitbhopal.notegem.controller.bookmarks.BookmarkSearchScreen
 import com.gdsc_vitbhopal.notegem.controller.bookmarks.BookmarksScreen
+import com.gdsc_vitbhopal.notegem.controller.calendar.CalendarScreen
+import com.gdsc_vitbhopal.notegem.controller.grocery.GroceryEntryDetailsScreen
+import com.gdsc_vitbhopal.notegem.controller.grocery.GroceryScreen
+import com.gdsc_vitbhopal.notegem.controller.grocery.GrocerySearchScreen
 import com.gdsc_vitbhopal.notegem.controller.notes.NoteDetailsScreen
 import com.gdsc_vitbhopal.notegem.controller.notes.NotesScreen
 import com.gdsc_vitbhopal.notegem.controller.notes.NotesSearchScreen
@@ -169,11 +173,23 @@ class MainActivity : ComponentActivity() {
                         composable(Screen.NoteSearchScreen.route) {
                             NotesSearchScreen(navController = navController)
                         }
-                        composable(Screen.GroceryScreen.route) {}
-                        composable(Screen.GroceryAddScreen.route) {}
-                        composable(Screen.GrocerySearchScreen.route) {}
-                        composable(Screen.GroceryDetailScreen.route) {}
-                        composable(Screen.GrocerySummaryScreen.route) {}
+                        composable(Screen.GroceryScreen.route) {
+                            GroceryScreen(navController = navController)
+                        }
+                        composable(Screen.GrocerySearchScreen.route) {
+                            GrocerySearchScreen(navController = navController)
+                        }
+                        composable(
+                            Screen.GroceryDetailScreen.route,
+                            arguments = listOf(navArgument(Constants.GROCERY_ID_ARG) {
+                                type = NavType.IntType
+                            })
+                        ) {
+                            GroceryEntryDetailsScreen(
+                                navController = navController,
+                                it.arguments?.getInt(Constants.GROCERY_ID_ARG)!!
+                            )
+                        }
 //                        composable(Screen.BookmarksScreen.route) {}
 //                        composable(Screen.BookmarkAddScreen.route) {}
 //                        composable(Screen.BookmarkDetailScreen.route) {}
@@ -195,7 +211,9 @@ class MainActivity : ComponentActivity() {
                         composable(Screen.BookmarkSearchScreen.route) {
                             BookmarkSearchScreen(navController = navController)
                         }
-                        composable(Screen.CalendarScreen.route) {}
+                        composable(Screen.CalendarScreen.route) {
+                            CalendarScreen()
+                        }
                         composable(Screen.CalendarSearchScreen.route) {}
                     }
                 }

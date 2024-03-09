@@ -1,9 +1,10 @@
 package com.gdsc_vitbhopal.notegem.domain.repository
 
 import com.gdsc_vitbhopal.notegem.domain.model.GroceryEntry
+import kotlinx.coroutines.flow.Flow
 
 interface GroceryRepository {
-    suspend fun getAllEntries(): List<GroceryEntry>
+    fun getAllEntries(): Flow<List<GroceryEntry>>
 
     suspend fun getEntry(id: Int): GroceryEntry
 

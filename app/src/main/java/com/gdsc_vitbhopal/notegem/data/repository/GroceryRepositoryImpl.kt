@@ -5,16 +5,15 @@ import com.gdsc_vitbhopal.notegem.domain.model.GroceryEntry
 import com.gdsc_vitbhopal.notegem.domain.repository.GroceryRepository
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
 class GroceryRepositoryImpl (
     private val groceryDao: GroceryDao,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : GroceryRepository {
-    override suspend fun getAllEntries(): List<GroceryEntry> {
-        return withContext(ioDispatcher) {
-            groceryDao.getAllEntries()
-        }
+    override fun getAllEntries(): Flow<List<GroceryEntry>> {
+        return groceryDao.getAllEntries()
     }
 
     override suspend fun getEntry(id: Int): GroceryEntry {

@@ -18,6 +18,7 @@ object Constants {
     const val NOTES_ORDER_KEY = "notes_order"
     const val TASKS_ORDER_KEY = "tasks_order"
     const val BOOKMARK_ORDER_KEY = "bookmark_order"
+    const val EXCLUDED_CALENDARS_KEY = "excluded_calendars"
     const val GROCERY_ORDER_KEY = "grocery_order"
 
     // NavArgs
