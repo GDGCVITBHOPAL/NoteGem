@@ -97,6 +97,7 @@ fun GroceryScreen(
                     onOrderChange = {
                         viewModel.onEvent(GroceryEvent.UpdateOrder(it))
                     },
+
                 )
             }
             LazyColumn(
@@ -123,15 +124,18 @@ fun GroceryScreen(
 
 @Composable
 fun GrocerySettingsSection(order: Order, onOrderChange: (Order) -> Unit) {
+
     val orders = listOf(
         Order.DateModified(),
         Order.DateCreated(),
         Order.Alphabetical()
     )
+
     val orderTypes = listOf(
         OrderType.ASC(),
         OrderType.DESC()
     )
+
     Column {
         Text(
             text = stringResource(R.string.order_by),
