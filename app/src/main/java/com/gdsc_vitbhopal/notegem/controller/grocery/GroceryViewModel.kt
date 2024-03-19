@@ -11,6 +11,7 @@ import com.gdsc_vitbhopal.notegem.domain.useCase.grocery.AddGroceryEntryUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.grocery.DeleteGroceryEntryUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.grocery.GetAllEntriesUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.grocery.GetGroceryEntryUseCase
+import com.gdsc_vitbhopal.notegem.domain.useCase.grocery.GetGroceryForChartUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.grocery.SearchEntriesUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.grocery.UpdateGroceryEntryUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.settings.GetSettingsUseCase
@@ -35,8 +36,9 @@ class GroceryViewModel @Inject constructor(
     private val getAlEntries: GetAllEntriesUseCase,
     private val searchEntries: SearchEntriesUseCase,
     private val getEntry: GetGroceryEntryUseCase,
-    getSettings: GetSettingsUseCase,
-    private val saveSettings: SaveSettingsUseCase
+    private val getSettings: GetSettingsUseCase,
+    private val saveSettings: SaveSettingsUseCase,
+    private val getEntriesForChart: GetGroceryForChartUseCase
 ) : ViewModel() {
 
     var uiState by mutableStateOf(UiState())
@@ -94,6 +96,9 @@ class GroceryViewModel @Inject constructor(
                 )
             }
             GroceryEvent.ErrorDisplayed -> uiState = uiState.copy(error = null)
+            is GroceryEvent.ChangeChartEntriesRange -> viewModelScope.launch {
+                uiState = uiState.copy(chartEntries = getEntriesForChart(event.monthly))
+            }
         }
     }
 
@@ -103,7 +108,8 @@ class GroceryViewModel @Inject constructor(
         val entry: GroceryEntry? = null,
         val error: String? = null,
         val searchEntries: List<GroceryEntry> = emptyList(),
-        val navigateUp: Boolean = false
+        val navigateUp: Boolean = false,
+        val chartEntries : List<GroceryEntry> = emptyList()
     )
 
     private fun getEntries(order: Order) {

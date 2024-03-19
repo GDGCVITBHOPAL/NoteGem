@@ -7,8 +7,8 @@ import com.gdsc_vitbhopal.notegem.util.grocery.Mood
 
 @Entity(tableName = "groceries")
 data class GroceryEntry(
-    val title: String,
-    val content: String,
+    val title: String = "",
+    val content: String = "",
     @ColumnInfo(name = "created_date")
     val createdDate: Long = 0L,
     @ColumnInfo(name = "updated_date")

@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.gdsc_vitbhopal.notegem.R
 import java.text.SimpleDateFormat
+import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
@@ -41,9 +42,15 @@ fun Long.monthName(): String {
     return sdf.format(this)
 }
 
-fun Long.sameDay(other: Long): Boolean {
-    val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
-    return sdf.format(this) == sdf.format(other)
+fun Long.inTheLast30Days(): Boolean {
+    val calendar = Calendar.getInstance()
+    calendar.add(Calendar.MONTH, -1)
+    return this > calendar.timeInMillis
+}
+fun Long.inTheLastYear(): Boolean {
+    val calendar = Calendar.getInstance()
+    calendar.add(Calendar.YEAR, -1)
+    return this > calendar.timeInMillis
 }
 
 fun Long.isCurrentYear(): Boolean {
