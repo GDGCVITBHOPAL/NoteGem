@@ -11,5 +11,6 @@ sealed class GroceryEvent {
     data class UpdateOrder(val order: Order) : GroceryEvent()
     data class UpdateEntry(val entry: GroceryEntry) : GroceryEvent()
     data class DeleteEntry(val entry: GroceryEntry) : GroceryEvent()
+    data class ChangeChartEntriesRange(val monthly: Boolean) : GroceryEvent()
     object ErrorDisplayed: GroceryEvent()
 }

@@ -23,6 +23,7 @@ import com.gdsc_vitbhopal.notegem.controller.bookmarks.BookmarkDetailsScreen
 import com.gdsc_vitbhopal.notegem.controller.bookmarks.BookmarkSearchScreen
 import com.gdsc_vitbhopal.notegem.controller.bookmarks.BookmarksScreen
 import com.gdsc_vitbhopal.notegem.controller.calendar.CalendarScreen
+import com.gdsc_vitbhopal.notegem.controller.grocery.GroceryChartScreen
 import com.gdsc_vitbhopal.notegem.controller.grocery.GroceryEntryDetailsScreen
 import com.gdsc_vitbhopal.notegem.controller.grocery.GroceryScreen
 import com.gdsc_vitbhopal.notegem.controller.grocery.GrocerySearchScreen
@@ -178,6 +179,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(Screen.GrocerySearchScreen.route) {
                             GrocerySearchScreen(navController = navController)
+                        }
+                        composable(Screen.DiaryChartScreen.route) {
+                            GroceryChartScreen()
                         }
                         composable(
                             Screen.GroceryDetailScreen.route,
