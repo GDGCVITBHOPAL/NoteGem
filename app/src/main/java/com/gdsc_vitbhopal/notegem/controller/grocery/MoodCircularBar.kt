@@ -1,6 +1,7 @@
 package com.gdsc_vitbhopal.notegem.controller.grocery
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
@@ -27,24 +28,45 @@ import com.gdsc_vitbhopal.notegem.util.grocery.Mood
 
 @Composable
 fun MoodCircularBar(
+    modifier: Modifier = Modifier,
     entries: List<GroceryEntry>,
     strokeWidth: Float = 85f,
+    showPercentage: Boolean = true,
+    onClick: () -> Unit = {}
 ) {
     Card(
         shape = RoundedCornerShape(24.dp),
         elevation = 8.dp,
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(6.dp)
     ) {
-        Column {
-            val mostFrequentMood by derivedStateOf {
-                entries.groupBy { it.mood }.maxByOrNull { it.value.size }?.key ?: Mood.OKAY
+        Column(
+            Modifier.clickable {
+                onClick()
             }
-            val moods by derivedStateOf { entries.toPercentages() }
+        ) {
+            val mostFrequentMood by remember(entries) {
+                derivedStateOf {
+                    // if multiple ones with the same frequency, return the most positive one
+                    val entriesGrouped = entries
+                        .groupBy { it.mood }
+                    val max = entriesGrouped.maxOf { it.value.size }
+                    entriesGrouped
+                        .filter { it.value.size == max }
+                        .maxByOrNull {
+                            it.key.value
+                        }?.key ?: Mood.OKAY
+                }
+            }
+            val moods by remember(entries) {
+                derivedStateOf {
+                    entries.toPercentages()
+                }
+            }
             Text(
                 text = stringResource(R.string.mood_summary),
-                style = MaterialTheme.typography.h5,
+                style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Bold),
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(12.dp),
@@ -57,7 +79,7 @@ fun MoodCircularBar(
                         .aspectRatio(1f),
                     contentAlignment = Alignment.Center
                 ) {
-                    var currentAngle by remember { mutableStateOf(90f) }
+                    var currentAngle = remember { 90f }
                     Canvas(
                         modifier = Modifier
                             .fillMaxSize()
@@ -75,7 +97,7 @@ fun MoodCircularBar(
                             currentAngle += percentage * 360f
                         }
                     }
-                    Column(
+                    if (showPercentage) Column(
                         verticalArrangement = Arrangement.spacedBy(8.dp),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
@@ -92,7 +114,7 @@ fun MoodCircularBar(
                                 Spacer(Modifier.width(8.dp))
                                 Icon(
                                     painter = painterResource(mood.icon),
-                                    contentDescription = mood.name,
+                                    contentDescription = stringResource(mood.title),
                                     tint = mood.color,
                                     modifier = Modifier.size(strokeWidth.dp / 3)
                                 )
@@ -109,7 +131,7 @@ fun MoodCircularBar(
                                 color = mostFrequentMood.color
                             )
                         ) {
-                            append(mostFrequentMood.name)
+                            append(stringResource(mostFrequentMood.title))
                         }
                         append(stringResource(R.string.most_of_the_time))
                     },
@@ -122,7 +144,7 @@ fun MoodCircularBar(
             } else {
                 Text(
                     text = stringResource(R.string.no_data_yet),
-                    style = MaterialTheme.typography.h6,
+                    style = MaterialTheme.typography.body1,
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(12.dp),

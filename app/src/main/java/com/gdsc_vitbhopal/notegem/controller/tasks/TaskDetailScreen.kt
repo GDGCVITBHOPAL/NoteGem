@@ -69,7 +69,8 @@ fun TaskDetailScreen(
         if (uiState.navigateUp) {
             openDialog = false
 //            navController.navigateUp()
-            navController.popBackStack()
+            navController.popBackStack(Screen.TaskSearchScreen.route, false)
+            navController.navigateUp()
         }
         if (uiState.error != null) {
             scaffoldState.snackbarHostState.showSnackbar(
@@ -90,7 +91,8 @@ fun TaskDetailScreen(
             ),
             {
 //                navController.navigateUp()
-                navController.popBackStack(route = Screen.TasksScreen.route, inclusive = false)
+                navController.popBackStack(Screen.TaskSearchScreen.route, false)
+                navController.navigateUp()
             }
         ) {
             viewModel.onEvent(TaskEvent.UpdateTask(it, dueDate != uiState.task.dueDate))

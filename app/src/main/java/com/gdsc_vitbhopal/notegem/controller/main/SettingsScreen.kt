@@ -5,6 +5,8 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -204,14 +206,20 @@ fun StartUpScreenSettingsItem(
                 .fillMaxWidth(),
             contentAlignment = Alignment.CenterEnd
         ) {
-            Text(
-                text = when (screen) {
-                    StartUpScreenSettings.DASHBOARD.value -> stringResource(R.string.dashboard)
-                    StartUpScreenSettings.HOME.value -> stringResource(R.string.home)
-                    else -> stringResource(R.string.dashboard)
-                },
-                style = MaterialTheme.typography.body1
-            )
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = when (screen) {
+                        StartUpScreenSettings.DASHBOARD.value -> stringResource(R.string.dashboard)
+                        StartUpScreenSettings.HOME.value -> stringResource(R.string.home)
+                        else -> stringResource(R.string.dashboard)
+                    },
+                    style = MaterialTheme.typography.body1
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                Icon(imageVector = Icons.Default.ArrowDropDown, contentDescription = null)
+            }
             DropdownMenu(
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
@@ -220,13 +228,13 @@ fun StartUpScreenSettingsItem(
                     onDashboardClick()
                     expanded = false
                 }) {
-                    Text(text = stringResource(id = R.string.dashboard))
+                    Text(text = stringResource(id = R.string.dashboard), style = MaterialTheme.typography.body1)
                 }
                 DropdownMenuItem(onClick = {
                     onHomeClick()
                     expanded = false
                 }) {
-                    Text(text = stringResource(id = R.string.home))
+                    Text(text = stringResource(id = R.string.home), style = MaterialTheme.typography.body1)
                 }
             }
         }

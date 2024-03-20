@@ -52,6 +52,11 @@
     <string name="pin_note">Pin note</string>
     <string name="reading_mode">Reading mode</string>
     <string name="view_as">View as</string>
+    <string name="no_events">No events yet</string>
+    <string name="tasks_summary">Tasks summary</string>
+    <string name="you_completed">You completed</string>
+    <string name="of_last_week_tasks">of Tasks in the last Week</string>
+    <string name="no_tasks_today">No tasks due today</string>
     <string name="descending">Descending</string>
     <string name="delete_note_confirmation_title">Delete Note?</string>
     <string name="delete_bookmark_confirmation_title">Delete Bookmark?</string>
