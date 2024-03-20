@@ -42,6 +42,13 @@ fun Long.monthName(): String {
     return sdf.format(this)
 }
 
+fun Long.inTheLastWeek(): Boolean {
+    val calendar = Calendar.getInstance()
+    calendar.add(Calendar.WEEK_OF_MONTH, -1)
+    return this > calendar.timeInMillis
+}
+
+
 fun Long.inTheLast30Days(): Boolean {
     val calendar = Calendar.getInstance()
     calendar.add(Calendar.MONTH, -1)

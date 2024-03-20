@@ -40,7 +40,7 @@ fun LazyItemScope.TaskItem(
         modifier = modifier
             .padding(horizontal = 8.dp)
             .animateItemPlacement(),
-        shape = RoundedCornerShape(20.dp),
+        shape = RoundedCornerShape(16.dp),
         elevation = 8.dp
     ) {
         Column(
@@ -48,7 +48,7 @@ fun LazyItemScope.TaskItem(
                 .clickable {
                     onClick()
                 }
-                .padding(16.dp)
+                .padding(12.dp)
         ) {
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
                 TaskCheckBox(

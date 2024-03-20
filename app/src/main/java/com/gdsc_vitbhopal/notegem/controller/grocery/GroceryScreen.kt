@@ -50,7 +50,7 @@ fun GroceryScreen(
                         Icon(
                             painter = painterResource(id = R.drawable.ic_pie_chart),
                             contentDescription = stringResource(R.string.diary_chart),
-                            modifier = Modifier.size(24.dp)
+                            modifier = Modifier.size(34.dp)
                         )
                     }
                 }
