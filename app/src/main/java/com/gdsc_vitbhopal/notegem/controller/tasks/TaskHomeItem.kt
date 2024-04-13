@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.domain.model.Task
 import com.gdsc_vitbhopal.notegem.util.date.formatDate
+import com.gdsc_vitbhopal.notegem.util.date.isDueDateOverdue
 import com.gdsc_vitbhopal.notegem.util.settings.toPriority
 
 @Composable
@@ -47,7 +48,7 @@ fun TaskHomeItem(
                 .padding(10.dp)
         ) {
             Row(Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                TaskWidgetCheckBox(
+                TaskHomeCheckBox(
                     isComplete = task.isCompleted,
                     task.priority.toPriority().color,
                     onComplete = { onComplete() }
