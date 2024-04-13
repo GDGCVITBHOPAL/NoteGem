@@ -3,6 +3,7 @@ package com.gdsc_vitbhopal.notegem.controller.grocery
 import android.annotation.SuppressLint
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -43,17 +44,17 @@ fun GroceryScreen(
                 },
                 backgroundColor = MaterialTheme.colors.background,
                 elevation = 0.dp,
-                actions = {
-                    IconButton(onClick = {
-                        navController.navigate(Screen.DiaryChartScreen.route)
-                    }) {
-                        Icon(
-                            painter = painterResource(id = R.drawable.ic_pie_chart),
-                            contentDescription = stringResource(R.string.diary_chart),
-                            modifier = Modifier.size(34.dp)
-                        )
-                    }
-                }
+//                actions = {
+//                    IconButton(onClick = {
+//                        navController.navigate(Screen.GroceryChartScreen.route)
+//                    }) {
+//                        Icon(
+//                            painter = painterResource(id = R.drawable.ic_pie_chart),
+//                            contentDescription = stringResource(R.string.grocery_chart),
+//                            modifier = Modifier.size(34.dp)
+//                        )
+//                    }
+//                }
             )
         },
         floatingActionButton = {
@@ -147,7 +148,7 @@ fun GrocerySettingsSection(order: Order, onOrderChange: (Order) -> Unit) {
         OrderType.DESC()
     )
 
-    Column {
+    Column (Modifier.background(color = MaterialTheme.colors.background)){
         Text(
             text = stringResource(R.string.order_by),
             style = MaterialTheme.typography.body1,

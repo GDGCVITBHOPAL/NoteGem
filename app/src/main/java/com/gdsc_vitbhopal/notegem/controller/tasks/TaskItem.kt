@@ -69,14 +69,16 @@ fun LazyItemScope.TaskItem(
                 Spacer(Modifier.height(8.dp))
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     Icon(
-                        modifier = Modifier.size(15.dp),
+                        modifier = Modifier.size(13.dp),
                         painter = painterResource(R.drawable.ic_alarm),
-                        contentDescription = stringResource(R.string.due_date)
+                        contentDescription = stringResource(R.string.due_date),
+                        tint = if (task.dueDate.isDueDateOverdue()) Color.Red else MaterialTheme.colors.onSurface
                     )
                     Spacer(Modifier.width(4.dp))
                     Text(
                         text = task.dueDate.formatDate(),
-                        style = MaterialTheme.typography.body2
+                        style = MaterialTheme.typography.body2,
+                        color = if (task.dueDate.isDueDateOverdue()) Color.Red else MaterialTheme.colors.onSurface
                     )
                 }
             }

@@ -160,10 +160,10 @@ fun GroceryEntryDetailsScreen(
                 style = MaterialTheme.typography.body1,
                 modifier = Modifier.padding(start = 10.dp)
             )
-            Spacer(Modifier.height(8.dp))
-            EntryMoodSection(
-                currentMood = mood,
-            ) { mood = it }
+//            Spacer(Modifier.height(8.dp))
+//            EntryMoodSection(
+//                currentMood = mood,
+//            ) { mood = it }
             Spacer(Modifier.height(8.dp))
             OutlinedTextField(
                 value = title,
@@ -223,51 +223,51 @@ fun GroceryEntryDetailsScreen(
     }
 }
 
-@Composable
-fun EntryMoodSection(
-    currentMood: Mood,
-    onMoodChange: (Mood) -> Unit
-) {
-    val moods = listOf(Mood.AWESOME, Mood.GOOD, Mood.OKAY, Mood.BAD, Mood.TERRIBLE)
-    Row(
-        Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        moods.forEach { mood ->
-            MoodItem(
-                mood = mood,
-                chosen = mood == currentMood,
-                onMoodChange = { onMoodChange(mood) }
-            )
-        }
-    }
-}
+//@Composable
+//fun EntryMoodSection(
+//    currentMood: Mood,
+//    onMoodChange: (Mood) -> Unit
+//) {
+//    val moods = listOf(Mood.AWESOME, Mood.GOOD, Mood.OKAY, Mood.BAD, Mood.TERRIBLE)
+//    Row(
+//        Modifier.fillMaxWidth(),
+//        horizontalArrangement = Arrangement.SpaceBetween,
+//        verticalAlignment = Alignment.CenterVertically
+//    ) {
+//        moods.forEach { mood ->
+//            MoodItem(
+//                mood = mood,
+//                chosen = mood == currentMood,
+//                onMoodChange = { onMoodChange(mood) }
+//            )
+//        }
+//    }
+//}
 
-@Composable
-private fun MoodItem(mood: Mood, chosen: Boolean, onMoodChange: () -> Unit) {
-    Box(Modifier.clip(RoundedCornerShape(8.dp))){
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier
-                .clickable { onMoodChange() }
-                .padding(6.dp)
-        ) {
-            Icon(
-                painter = painterResource(id = mood.icon),
-                contentDescription = stringResource(mood.title),
-                tint = if (chosen) mood.color else Color.Gray,
-                modifier = Modifier.size(48.dp)
-            )
-            Spacer(Modifier.height(8.dp))
-            Text(
-                text = stringResource(mood.title),
-                color = if (chosen) mood.color else Color.Gray,
-                style = MaterialTheme.typography.body2
-            )
-        }
-    }
-}
+//@Composable
+//private fun MoodItem(mood: Mood, chosen: Boolean, onMoodChange: () -> Unit) {
+//    Box(Modifier.clip(RoundedCornerShape(8.dp))){
+//        Column(
+//            horizontalAlignment = Alignment.CenterHorizontally,
+//            modifier = Modifier
+//                .clickable { onMoodChange() }
+//                .padding(6.dp)
+//        ) {
+//            Icon(
+//                painter = painterResource(id = mood.icon),
+//                contentDescription = stringResource(mood.title),
+//                tint = if (chosen) mood.color else Color.Gray,
+//                modifier = Modifier.size(48.dp)
+//            )
+//            Spacer(Modifier.height(8.dp))
+//            Text(
+//                text = stringResource(mood.title),
+//                color = if (chosen) mood.color else Color.Gray,
+//                style = MaterialTheme.typography.body2
+//            )
+//        }
+//    }
+//}
 
 private fun entryChanged(
     entry: GroceryEntry?,

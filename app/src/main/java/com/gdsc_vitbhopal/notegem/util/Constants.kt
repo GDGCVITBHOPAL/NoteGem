@@ -14,6 +14,7 @@ object Constants {
     const val SPACES_START_UP_SCREEN_KEY = "spaces_start_up_screen"
     const val DASHBOARD_START_UP_SCREEN_KEY = "dashboard_start_up_screen"
     const val SETTINGS_THEME_KEY = "settings_theme"
+    const val CALENDAR_SCREEN_URI = "app://com.gdsc_vitbhopal.notegem/calendar"
     const val BOOKMARK_VIEW_KEY = "bookmark_view"
     const val NOTES_ORDER_KEY = "notes_order"
     const val TASKS_ORDER_KEY = "tasks_order"

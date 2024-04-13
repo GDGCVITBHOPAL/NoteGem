@@ -17,7 +17,7 @@ import com.gdsc_vitbhopal.notegem.domain.model.Task
 
 @Database(
     entities = [Note::class, Task::class, GroceryEntry::class, Bookmark::class, Alarm::class],
-    version = 1
+    version = 2
 )
 @TypeConverters(DBConverters::class)
 abstract class NoteGemDatabase: RoomDatabase() {

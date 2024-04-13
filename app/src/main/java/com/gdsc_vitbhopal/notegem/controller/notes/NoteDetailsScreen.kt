@@ -118,7 +118,7 @@ fun NoteDetailsScreen(
                         }
                     }) {
                         Icon(
-                            painter = if (pinned) painterResource(id = R.drawable.ic_pin)
+                            painter = if (pinned) painterResource(id = R.drawable.ic_pin_filled)
                             else painterResource(id = R.drawable.ic_pin),
                             contentDescription = stringResource(R.string.pin_note),
                             modifier = Modifier.size(24.dp),

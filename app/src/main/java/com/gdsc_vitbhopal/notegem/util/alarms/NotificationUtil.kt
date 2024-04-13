@@ -42,7 +42,7 @@ fun NotificationManager.sendNotification(task: Task, context: Context, id: Int) 
 
     val notification = NotificationCompat.Builder(context, Constants.REMINDERS_CHANNEL_ID)
 //       TODO() .setSmallIcon()
-        .setSmallIcon(R.drawable.icon_small)
+        .setSmallIcon(R.mipmap.ic_launcher)
         .setContentTitle(task.title)
         .setContentText(task.description)
         .setContentIntent(taskDetailsPendingIntent)

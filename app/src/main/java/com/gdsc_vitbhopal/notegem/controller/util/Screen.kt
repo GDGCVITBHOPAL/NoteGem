@@ -23,7 +23,7 @@ sealed class Screen(val route: String) {
 //    object GrocerySummaryScreen : Screen("grocery_summary_screen")
     object BookmarksScreen : Screen("bookmarks_screen")
 
-    object DiaryChartScreen : Screen("diary_chart_screen")
+    object GroceryChartScreen : Screen("diary_chart_screen")
     object BookmarkDetailScreen : Screen("bookmark_detail_screen/{${Constants.BOOKMARK_ID_ARG}}")
 //    object BookmarkAddScreen : Screen("bookmark_add_screen")
     object CalendarScreen : Screen("calendar_screen")

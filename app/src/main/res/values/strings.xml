@@ -50,6 +50,12 @@
     <string name="delete_note">Delete Note</string>
     <string name="error_empty_note">Note cannot be empty</string>
     <string name="pin_note">Pin note</string>
+    <string name="loading">Loading…</string>
+    <string name="calendar_widget_refresh_message">Click the refresh button if you already granted the permission</string>
+    <string name="thursday_30_calendar_preview">Thursday 30</string>
+    <string name="sunday_5_calendar_preview">Sunday 5</string>
+    <string name="dinner_with_ali_calender_preview">Dinner with Ali</string>
+    <string name="cs_lecture_calender_preview">CS lecture</string>
     <string name="reading_mode">Reading mode</string>
     <string name="view_as">View as</string>
     <string name="no_events">No events yet</string>
@@ -99,7 +105,7 @@
     <string name="save_entry">Save entry</string>
     <string name="search_grocery">Search Groceries</string>
     <string name="mood">Mood</string>
-    <string name="diary_chart">Diary chart</string>
+    <string name="grocery_chart">Grocery chart</string>
     <string name="mood_during_month">You mood during the month</string>
     <string name="mood_during_year">You mood during the year</string>
     <string name="percent">%1$d%%</string>

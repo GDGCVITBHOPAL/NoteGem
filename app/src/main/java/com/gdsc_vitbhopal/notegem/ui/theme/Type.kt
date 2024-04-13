@@ -64,7 +64,7 @@ val Typography = Typography(
         fontSize = 20.sp
     ),
     subtitle1 = TextStyle(
-        fontFamily = BebeasNeue,
+        fontFamily = Kanit,
         fontWeight = FontWeight.Normal,
         fontSize = 10.sp
     )

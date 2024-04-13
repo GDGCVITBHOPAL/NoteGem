@@ -20,8 +20,8 @@ class AlarmReceiver : BroadcastReceiver() {
     lateinit var deleteAlarmUseCase: DeleteAlarmUseCase
     @Inject
     lateinit var getTaskByIdUseCase: GetTaskByIdUseCase
-    @Inject
-    lateinit var updateTaskByIdUseCase: UpdateTaskUseCase
+//    @Inject
+//    lateinit var updateTaskByIdUseCase: UpdateTaskUseCase
 
     override fun onReceive(context: Context?, intent: Intent?) {
         runBlocking {
@@ -29,7 +29,7 @@ class AlarmReceiver : BroadcastReceiver() {
             task?.let {
                 val manager = context?.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
                 manager.sendNotification(task, context, task.id)
-                updateTaskByIdUseCase(task.copy(dueDate = 0L))
+//                updateTaskByIdUseCase(task.copy(dueDate = 0L))
                 deleteAlarmUseCase(task.id)
             }
         }
