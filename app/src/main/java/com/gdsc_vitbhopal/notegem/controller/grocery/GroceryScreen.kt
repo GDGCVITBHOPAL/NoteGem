@@ -7,6 +7,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -148,7 +149,16 @@ fun GrocerySettingsSection(order: Order, onOrderChange: (Order) -> Unit) {
         OrderType.DESC()
     )
 
-    Column (Modifier.background(color = MaterialTheme.colors.background)){
+    val bottomRoundedCorner = RoundedCornerShape(
+        topStart = 30.dp,
+        topEnd = 30.dp,
+        bottomStart = 30.dp, // Adjust the radius as needed
+        bottomEnd = 30.dp // Adjust the radius as needed
+    )
+
+
+    Column (modifier = Modifier.background(MaterialTheme.colors.surface, shape = bottomRoundedCorner)
+        .padding(10.dp)){
         Text(
             text = stringResource(R.string.order_by),
             style = MaterialTheme.typography.body1,

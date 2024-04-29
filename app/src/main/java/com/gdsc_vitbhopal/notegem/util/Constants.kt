@@ -13,6 +13,8 @@ object Constants {
     const val NOTE_VIEW_KEY = "note_view"
     const val SPACES_START_UP_SCREEN_KEY = "spaces_start_up_screen"
     const val DASHBOARD_START_UP_SCREEN_KEY = "dashboard_start_up_screen"
+    const val ADD_TASK_ARG = "add_task"
+    const val TASKS_SCREEN_URI = "app://com.mhss.app.mybrain/tasks"
     const val SETTINGS_THEME_KEY = "settings_theme"
     const val CALENDAR_SCREEN_URI = "app://com.gdsc_vitbhopal.notegem/calendar"
     const val BOOKMARK_VIEW_KEY = "bookmark_view"

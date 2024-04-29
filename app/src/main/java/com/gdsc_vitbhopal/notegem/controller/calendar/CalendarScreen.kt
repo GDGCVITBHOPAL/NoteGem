@@ -12,10 +12,12 @@ import android.provider.Settings
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -223,7 +225,7 @@ fun MonthDropDownMenu(
         Row(
             verticalAlignment = Alignment.CenterVertically,
         ) {
-            AnimatedContent(targetState = selectedMonth) { month ->
+            AnimatedContent(targetState = selectedMonth, label = "") { month ->
                 Text(
                     text = month,
                     style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Bold)
@@ -254,7 +256,14 @@ fun CalendarSettingsSection(
     calendars: Map<String, List<Calendar>>,
     onCalendarClicked: (Calendar) -> Unit
 ) {
-    Column {
+    val bottomRoundedCorner = RoundedCornerShape(
+        topStart = 30.dp,
+        topEnd = 30.dp,
+        bottomStart = 30.dp, // Adjust the radius as needed
+        bottomEnd = 30.dp // Adjust the radius as needed
+    )
+    Column(modifier = Modifier.background(MaterialTheme.colors.surface, shape = bottomRoundedCorner)
+        .padding(10.dp)){
         Divider()
         Text(
             text = stringResource(R.string.include_calendars),

@@ -19,11 +19,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.domain.model.CalendarEvent
+import com.gdsc_vitbhopal.notegem.ui.theme.LightBlueCard
+import com.gdsc_vitbhopal.notegem.ui.theme.ModerateBlueCard
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
+
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
@@ -47,7 +51,6 @@ fun CalendarHomeWidget(
         val isDark = !MaterialTheme.colors.isLight
         Column(
             modifier = modifier
-                .clickable { onClick() }
                 .padding(8.dp)
         ) {
             Row(
@@ -73,7 +76,7 @@ fun CalendarHomeWidget(
                 modifier = Modifier
                     .fillMaxSize()
                     .clip(RoundedCornerShape(20.dp))
-                    .background(if (isDark) Color.DarkGray else Color.LightGray),
+                    .background(if (isDark) Color.DarkGray else LightBlueCard),
                 contentPadding = PaddingValues(vertical = 10.dp, horizontal = 8.dp),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
                 horizontalAlignment = Alignment.CenterHorizontally

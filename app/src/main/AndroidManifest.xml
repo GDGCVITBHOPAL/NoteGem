@@ -44,18 +44,6 @@
             android:name=".util.alarms.TaskActionButtonBroadcastReceiver"
             android:enabled="true" />
 
-<!--        <service-->
-<!--            android:name=".controller.tasks.AddTaskTileService"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="true"-->
-<!--            android:label="@string/add_task"-->
-<!--            android:icon="@drawable/ic_check"-->
-<!--            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">-->
-<!--            <intent-filter>-->
-<!--                <action-->
-<!--                    android:name="android.service.quicksettings.action.QS_TILE"/>-->
-<!--            </intent-filter>-->
-<!--        </service>-->
         <activity
             android:name=".controller.bookmarks.SaveBookmarkActivity"
             android:autoRemoveFromRecents="true"
@@ -100,9 +88,10 @@
 
         <!-- Calendar widget-->
         <receiver
-            android:name=".presentation.glance_widgets.CalendarWidgetReceiver"
+            android:name=".controller.glance_widgets.CalendarWidgetReceiver"
             android:enabled="@bool/glance_appwidget_available"
-            android:exported="false">
+            android:label="@string/calendar"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
@@ -113,14 +102,34 @@
 
         <!-- For updating the events in the  calendar widget when there are changes-->
         <receiver
-            android:name=".presentation.glance_widgets.RefreshCalendarWidgetReceiver"
+            android:name=".controller.glance_widgets.RefreshCalendarWidgetReceiver"
             android:enabled="@bool/glance_appwidget_available"
-            android:exported="false">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.PROVIDER_CHANGED"/>
                 <data android:scheme="content"/>
                 <data android:host="com.android.calendar"/>
             </intent-filter>
+        </receiver>
+
+        <!-- Tasks widget-->
+        <receiver
+            android:name=".controller.glance_widgets.TasksWidgetReceiver"
+            android:enabled="@bool/glance_appwidget_available"
+            android:label="@string/tasks"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/tasks_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name=".controller.glance_widgets.CompleteTaskWidgetReceiver"
+            android:enabled="@bool/glance_appwidget_available"
+            android:exported="false">
         </receiver>
 
         <meta-data

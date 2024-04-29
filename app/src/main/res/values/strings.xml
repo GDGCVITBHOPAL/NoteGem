@@ -25,6 +25,9 @@
     <string name="bookmarks">Bookmarks</string>
     <string name="calendar">Calendar</string>
     <string name="add_task">Add task</string>
+    <string name="visit_dentist_tasks_preview">Visit dentist</string>
+    <string name="buy_groceries_tasks_preview">Buy groceries</string>
+    <string name="call_mom_tasks_preview">Call mom</string>
     <string name="search">Search</string>
     <string name="title">Title</string>
     <string name="delete_sub_task">Delete Sub task</string>

@@ -13,7 +13,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.controller.calendar.CalendarHomeWidget
-import com.gdsc_vitbhopal.notegem.controller.tasks.TasksWidget
+import com.gdsc_vitbhopal.notegem.controller.glance_widgets.TasksHomeWidget
+import com.gdsc_vitbhopal.notegem.controller.tasks.TasksHomeWidget
 import com.gdsc_vitbhopal.notegem.controller.util.Screen
 import com.gdsc_vitbhopal.notegem.util.Constants
 
@@ -55,7 +56,7 @@ fun HomeScreen(
                 )
             }
             item {
-                TasksWidget(
+                TasksHomeWidget(
                     modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(1.5f),
