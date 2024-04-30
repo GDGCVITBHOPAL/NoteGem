@@ -17,6 +17,7 @@ import com.gdsc_vitbhopal.notegem.domain.useCase.settings.GetSettingsUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.tasks.GetAllTasksUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.tasks.UpdateTaskUseCase
 import com.gdsc_vitbhopal.notegem.util.Constants
+import com.gdsc_vitbhopal.notegem.util.date.inTheLastWeek
 import com.gdsc_vitbhopal.notegem.util.settings.StartUpScreenSettings
 import com.gdsc_vitbhopal.notegem.util.settings.ThemeSettings
 import com.gdsc_vitbhopal.notegem.util.settings.*
@@ -32,6 +33,7 @@ class MainViewModel @Inject constructor(
     private val getAllTasks: GetAllTasksUseCase,
     private val getAllEntriesUseCase: GetAllEntriesUseCase,
     private val updateTask: UpdateTaskUseCase,
+    val summaryTasks: List<Task> = emptyList(),
     private val getAllEventsUseCase: GetAllEventsUseCase
 ) : ViewModel() {
 
@@ -95,15 +97,10 @@ class MainViewModel @Inject constructor(
 
     private fun refreshTasks(order: Order, showCompleted: Boolean) {
         refreshTasksJob?.cancel()
-        refreshTasksJob = getAllTasks(order)
-            .map { list ->
-                if (showCompleted)
-                    list
-                else
-                    list.filter { !it.isCompleted }
-            }.onEach { tasks ->
+        refreshTasksJob = getAllTasks(order).onEach { tasks ->
                 uiState = uiState.copy(
-                    homeTasks = tasks
+                    homeTasks = if (showCompleted) tasks else tasks.filter { !it.isCompleted },
+                    summaryTasks = tasks.filter { it.createdDate.inTheLastWeek() }
                 )
             }.launchIn(viewModelScope)
     }

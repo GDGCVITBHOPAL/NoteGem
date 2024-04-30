@@ -80,8 +80,8 @@ fun HomeScreen(
                     }
                 )
             }
-//            item {
-//                Row {
+            item {
+                Row {
 //                    MoodCircularBar(
 //                        entries = viewModel.uiState.homeEntries,
 //                        showPercentage = false,
@@ -92,12 +92,12 @@ fun HomeScreen(
 //                            )
 //                        }
 //                    )
-//                    TasksSummaryCard(
-//                        modifier = Modifier.weight(1f, fill = true),
-//                        tasks = viewModel.uiState.summaryTasks
-//                    )
-//                }
-//            }
+                    TasksSummaryCard(
+                        modifier = Modifier.weight(1f, fill = true),
+                        tasks = viewModel.uiState.summaryTasks
+                    )
+                }
+            }
             item { Spacer(Modifier.height(65.dp)) }
         }
     }

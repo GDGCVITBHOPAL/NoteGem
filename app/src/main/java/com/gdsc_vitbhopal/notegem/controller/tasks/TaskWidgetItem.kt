@@ -114,30 +114,14 @@ fun TaskWidgetCheckBox(
                 }))
             .clickable(
                 onClick = onComplete
-            ).padding(2.dp)
+            ).padding(3.dp)
     ) {
-        Box(
-            modifier = GlanceModifier
-                .fillMaxSize()
-                .cornerRadius(99.dp)
-                .background(ColorProvider(borderColor))
-                .padding(2.dp)
-        ) {
-            Box(
-                modifier = GlanceModifier
-                    .fillMaxSize()
-                    .cornerRadius(99.dp)
-                    .background(ImageProvider(R.drawable.task_check_box_background)),
-                contentAlignment = Alignment.Center
-            ) {
-                if (isComplete) {
-                    Image(
-                        modifier = GlanceModifier.size(14.dp),
-                        provider = ImageProvider(R.drawable.ic_check),
-                        contentDescription = null
-                    )
-                }
-            }
+        if (isComplete) {
+            Image(
+                modifier = GlanceModifier.size(14.dp),
+                provider = ImageProvider(R.drawable.ic_check),
+                contentDescription = null
+            )
         }
     }
 }
