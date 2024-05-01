@@ -33,7 +33,6 @@ class MainViewModel @Inject constructor(
     private val getAllTasks: GetAllTasksUseCase,
     private val getAllEntriesUseCase: GetAllEntriesUseCase,
     private val updateTask: UpdateTaskUseCase,
-    val summaryTasks: List<Task> = emptyList(),
     private val getAllEventsUseCase: GetAllEventsUseCase
 ) : ViewModel() {
 

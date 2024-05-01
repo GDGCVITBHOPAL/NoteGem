@@ -28,8 +28,9 @@ fun HomeScreen(
             TopAppBar(
                 title = {
                     Text(
-                        text = stringResource(R.string.dashboard),
-                        style = MaterialTheme.typography.h5.copy(fontWeight = FontWeight.Bold)
+                        text = stringResource(R.string.home),
+                        fontWeight = FontWeight.Bold,
+                        style = MaterialTheme.typography.h4.copy(fontWeight = FontWeight.Bold)
                     )
                 },
                 backgroundColor = MaterialTheme.colors.background,
@@ -91,11 +92,11 @@ fun HomeScreen(
 //                                Screen.DiaryChartScreen.route
 //                            )
 //                        }
+//                    )                    TasksSummaryCard(
+//                        modifier = Modifier.weight(1f, fill = true),
+//                        tasks = viewModel.uiState.summaryTasks
 //                    )
-                    TasksSummaryCard(
-                        modifier = Modifier.weight(1f, fill = true),
-                        tasks = viewModel.uiState.summaryTasks
-                    )
+
                 }
             }
             item { Spacer(Modifier.height(65.dp)) }

@@ -38,12 +38,6 @@ fun GroceryEntryItem(
                 .fillMaxWidth()
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(
-                    painterResource(entry.mood.icon),
-                    stringResource(entry.mood.title),
-                    tint = entry.mood.color,
-                    modifier = Modifier.size(30.dp)
-                )
                 Spacer(Modifier.width(8.dp))
                 Text(
                     entry.title,

@@ -5,15 +5,35 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
-import androidx.compose.runtime.*
+import androidx.compose.material.AlertDialog
+import androidx.compose.material.Button
+import androidx.compose.material.ButtonDefaults
+import androidx.compose.material.FloatingActionButton
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Scaffold
+import androidx.compose.material.Text
+import androidx.compose.material.TextButton
+import androidx.compose.material.TopAppBar
+import androidx.compose.material.rememberScaffoldState
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableLongStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
@@ -26,8 +46,7 @@ import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.controller.util.Screen
 import com.gdsc_vitbhopal.notegem.domain.model.GroceryEntry
 import com.gdsc_vitbhopal.notegem.util.date.fullDate
-import com.gdsc_vitbhopal.notegem.util.grocery.Mood
-import java.util.*
+import java.util.Calendar
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -48,9 +67,8 @@ fun GroceryEntryDetailsScreen(
 
     var title by rememberSaveable { mutableStateOf(state.entry?.title ?: "") }
     var content by rememberSaveable { mutableStateOf(state.entry?.content ?: "") }
-    var mood by rememberSaveable { mutableStateOf(state.entry?.mood ?: Mood.OKAY) }
     var date by rememberSaveable {
-        mutableStateOf(
+        mutableLongStateOf(
             state.entry?.createdDate ?: System.currentTimeMillis()
         )
     }
@@ -60,7 +78,7 @@ fun GroceryEntryDetailsScreen(
             title = state.entry.title
             content = state.entry.content
             date = state.entry.createdDate
-            mood = state.entry.mood
+//            mood = state.entry.mood
         }
     }
     LaunchedEffect(state) {
@@ -80,7 +98,6 @@ fun GroceryEntryDetailsScreen(
             val entry = state.entry.copy(
                 title = title,
                 content = content,
-                mood = mood,
                 createdDate = date,
                 updatedDate = System.currentTimeMillis()
             )
@@ -132,7 +149,6 @@ fun GroceryEntryDetailsScreen(
                         val entry = GroceryEntry(
                             title = title,
                             content = content,
-                            mood = mood,
                             createdDate = date,
                             updatedDate = System.currentTimeMillis()
                         )
@@ -155,15 +171,7 @@ fun GroceryEntryDetailsScreen(
                 .fillMaxSize()
                 .padding(12.dp)
         ) {
-            Text(
-                text = stringResource(R.string.mood),
-                style = MaterialTheme.typography.body1,
-                modifier = Modifier.padding(start = 10.dp)
-            )
-//            Spacer(Modifier.height(8.dp))
-//            EntryMoodSection(
-//                currentMood = mood,
-//            ) { mood = it }
+
             Spacer(Modifier.height(8.dp))
             OutlinedTextField(
                 value = title,
@@ -223,59 +231,12 @@ fun GroceryEntryDetailsScreen(
     }
 }
 
-//@Composable
-//fun EntryMoodSection(
-//    currentMood: Mood,
-//    onMoodChange: (Mood) -> Unit
-//) {
-//    val moods = listOf(Mood.AWESOME, Mood.GOOD, Mood.OKAY, Mood.BAD, Mood.TERRIBLE)
-//    Row(
-//        Modifier.fillMaxWidth(),
-//        horizontalArrangement = Arrangement.SpaceBetween,
-//        verticalAlignment = Alignment.CenterVertically
-//    ) {
-//        moods.forEach { mood ->
-//            MoodItem(
-//                mood = mood,
-//                chosen = mood == currentMood,
-//                onMoodChange = { onMoodChange(mood) }
-//            )
-//        }
-//    }
-//}
-
-//@Composable
-//private fun MoodItem(mood: Mood, chosen: Boolean, onMoodChange: () -> Unit) {
-//    Box(Modifier.clip(RoundedCornerShape(8.dp))){
-//        Column(
-//            horizontalAlignment = Alignment.CenterHorizontally,
-//            modifier = Modifier
-//                .clickable { onMoodChange() }
-//                .padding(6.dp)
-//        ) {
-//            Icon(
-//                painter = painterResource(id = mood.icon),
-//                contentDescription = stringResource(mood.title),
-//                tint = if (chosen) mood.color else Color.Gray,
-//                modifier = Modifier.size(48.dp)
-//            )
-//            Spacer(Modifier.height(8.dp))
-//            Text(
-//                text = stringResource(mood.title),
-//                color = if (chosen) mood.color else Color.Gray,
-//                style = MaterialTheme.typography.body2
-//            )
-//        }
-//    }
-//}
-
 private fun entryChanged(
     entry: GroceryEntry?,
     newEntry: GroceryEntry
 ): Boolean {
     return entry?.title != newEntry.title ||
             entry.content != newEntry.content ||
-            entry.mood != newEntry.mood ||
             entry.createdDate != newEntry.createdDate
 }
 
