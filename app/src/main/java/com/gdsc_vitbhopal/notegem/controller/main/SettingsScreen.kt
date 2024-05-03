@@ -12,18 +12,24 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.work.impl.model.WorkNameDao_Impl
 import com.gdsc_vitbhopal.notegem.BuildConfig
 import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.controller.settings.SettingsBasicLinkItem
 import com.gdsc_vitbhopal.notegem.controller.settings.SettingsItemCard
 import com.gdsc_vitbhopal.notegem.controller.settings.SettingsViewModel
+import com.gdsc_vitbhopal.notegem.ui.theme.Kanit
 import com.gdsc_vitbhopal.notegem.util.Constants
 import com.gdsc_vitbhopal.notegem.util.settings.StartUpScreenSettings
 import com.gdsc_vitbhopal.notegem.util.settings.ThemeSettings
+import com.gdsc_vitbhopal.notegem.util.settings.getName
+import com.gdsc_vitbhopal.notegem.util.settings.toFontFamily
+import com.gdsc_vitbhopal.notegem.util.settings.toInt
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @ExperimentalAnimationApi
@@ -103,6 +109,24 @@ fun SettingsScreen(
                         )
                     }
                 )
+            }
+
+            item {
+                val screen = viewModel
+                    .getSettings(
+                        intPreferencesKey(Constants.APP_FONT_KEY),
+                        Kanit.toInt()
+                    ).collectAsState(
+                        initial = Kanit.toInt()
+                    )
+                AppFontSettingsItem(
+                    screen.value,
+                ) { font ->
+                    viewModel.saveSettings(
+                        intPreferencesKey(Constants.APP_FONT_KEY),
+                        font
+                    )
+                }
             }
 
             item {
@@ -235,6 +259,64 @@ fun StartUpScreenSettingsItem(
                     expanded = false
                 }) {
                     Text(text = stringResource(id = R.string.home), style = MaterialTheme.typography.body1)
+                }
+            }
+        }
+    }
+}
+
+
+@Composable
+fun AppFontSettingsItem(
+    selectedFont: Int,
+    onFontChange: (Int) -> Unit = {}
+) {
+    var expanded by remember { mutableStateOf(false) }
+    val fonts = listOf(
+        FontFamily.Default,
+        Kanit,
+        FontFamily.Monospace,
+        FontFamily.SansSerif
+    )
+    SettingsItemCard(
+        cornerRadius = 30.dp,
+        onClick = {
+            expanded = true
+        },
+    ) {
+        Text(
+            text = stringResource(R.string.app_font),
+            style = MaterialTheme.typography.h6
+        )
+        Box(
+            modifier = Modifier
+                .fillMaxWidth(),
+            contentAlignment = Alignment.CenterEnd
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    selectedFont.toFontFamily().getName(),
+                    style = MaterialTheme.typography.body1
+                )
+                Spacer(modifier = Modifier.width(4.dp))
+                Icon(imageVector = Icons.Default.ArrowDropDown, contentDescription = null)
+            }
+            DropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false },
+            ) {
+                fonts.forEach {
+                    DropdownMenuItem(onClick = {
+                        onFontChange(it.toInt())
+                        expanded = false
+                    }) {
+                        Text(
+                            text = it.getName(),
+                            style = MaterialTheme.typography.body1
+                        )
+                    }
                 }
             }
         }

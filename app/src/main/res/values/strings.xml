@@ -61,6 +61,8 @@
     <string name="cs_lecture_calender_preview">CS lecture</string>
     <string name="reading_mode">Reading mode</string>
     <string name="view_as">View as</string>
+    <string name="app_font">App Font</string>
+    <string name="font_system_default">System default</string>
     <string name="no_events">No events yet</string>
     <string name="tasks_summary">Tasks summary</string>
     <string name="you_completed">You completed</string>

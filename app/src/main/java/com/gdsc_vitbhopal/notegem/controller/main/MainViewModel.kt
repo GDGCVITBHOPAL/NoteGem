@@ -16,6 +16,7 @@ import com.gdsc_vitbhopal.notegem.domain.useCase.grocery.GetAllEntriesUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.settings.GetSettingsUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.tasks.GetAllTasksUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.tasks.UpdateTaskUseCase
+import com.gdsc_vitbhopal.notegem.ui.theme.Kanit
 import com.gdsc_vitbhopal.notegem.util.Constants
 import com.gdsc_vitbhopal.notegem.util.date.inTheLastWeek
 import com.gdsc_vitbhopal.notegem.util.settings.StartUpScreenSettings
@@ -41,9 +42,9 @@ class MainViewModel @Inject constructor(
 
     private var refreshTasksJob : Job? = null
 
-    val themMode = getSettings(intPreferencesKey(Constants.SETTINGS_THEME_KEY), ThemeSettings.AUTO.value)
+    val themeMode = getSettings(intPreferencesKey(Constants.SETTINGS_THEME_KEY), ThemeSettings.AUTO.value)
     val defaultStartUpScreen = getSettings(intPreferencesKey(Constants.DEFAULT_START_UP_SCREEN_KEY), StartUpScreenSettings.DASHBOARD.value)
-
+    val font = getSettings(intPreferencesKey(Constants.APP_FONT_KEY), Kanit.toInt())
     fun onHomeEvent(event: HomeEvent) {
         when(event) {
             is HomeEvent.ReadPermissionChanged -> {

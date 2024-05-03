@@ -37,10 +37,13 @@ import com.gdsc_vitbhopal.notegem.controller.tasks.TasksSearchScreen
 import com.gdsc_vitbhopal.notegem.controller.util.Screen
 import com.gdsc_vitbhopal.notegem.ui.theme.BlueSurface
 import com.gdsc_vitbhopal.notegem.ui.theme.DarkBackground
+import com.gdsc_vitbhopal.notegem.ui.theme.Kanit
 import com.gdsc_vitbhopal.notegem.ui.theme.NoteGemTheme
 import com.gdsc_vitbhopal.notegem.util.Constants
 import com.gdsc_vitbhopal.notegem.util.settings.StartUpScreenSettings
 import com.gdsc_vitbhopal.notegem.util.settings.ThemeSettings
+import com.gdsc_vitbhopal.notegem.util.settings.toFontFamily
+import com.gdsc_vitbhopal.notegem.util.settings.toInt
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
@@ -57,7 +60,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val themeMode = viewModel.themMode.collectAsState(initial = ThemeSettings.AUTO.value)
+            val themeMode = viewModel.themeMode.collectAsState(initial = ThemeSettings.AUTO.value)
+            val font = viewModel.font.collectAsState(initial = Kanit.toInt())
             var startUpScreenSettings by remember { mutableStateOf(StartUpScreenSettings.DASHBOARD.value) }
             val systemUiController = rememberSystemUiController()
             LaunchedEffect(true) {
@@ -86,7 +90,7 @@ class MainActivity : ComponentActivity() {
                     darkIcons = !isDarkMode
                 )
             }
-            NoteGemTheme(darkTheme = isDarkMode) {
+            NoteGemTheme(darkTheme = isDarkMode, fontFamily = font.value.toFontFamily()) {
                 val navController = rememberNavController()
                 if (!isDarkMode) {
                     LaunchedEffect(true) {
