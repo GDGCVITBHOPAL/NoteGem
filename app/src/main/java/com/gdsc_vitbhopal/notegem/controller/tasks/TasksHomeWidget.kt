@@ -88,7 +88,7 @@ fun TasksHomeWidget(
                     item {
                         Text(
                             text = stringResource(R.string.no_tasks_today),
-                            style = MaterialTheme.typography.h6,
+                            style = MaterialTheme.typography.body2,
                             modifier = Modifier.fillMaxWidth(),
                             textAlign = TextAlign.Center
                         )

@@ -114,7 +114,8 @@ fun TaskWidgetCheckBox(
                 }))
             .clickable(
                 onClick = onComplete
-            ).padding(3.dp)
+            ).padding(3.dp),
+        contentAlignment = Alignment.Center
     ) {
         if (isComplete) {
             Image(

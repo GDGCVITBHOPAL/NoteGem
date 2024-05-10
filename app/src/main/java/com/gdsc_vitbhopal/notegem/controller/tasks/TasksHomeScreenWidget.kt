@@ -29,7 +29,7 @@ fun TasksHomeScreenWidget(
     Box(
         modifier = GlanceModifier
             .fillMaxWidth()
-            .background(ImageProvider(com.gdsc_vitbhopal.notegem.R.drawable.large_item_rounded))
+            .background(ImageProvider(R.drawable.large_item_rounded))
             .cornerRadius(25.dp)
     ) {
         Column(
@@ -43,7 +43,7 @@ fun TasksHomeScreenWidget(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    getString(com.gdsc_vitbhopal.notegem.R.string.tasks),
+                    getString(R.string.tasks),
                     style = TextStyle(
                         color = ColorProvider(Color.White),
                         fontWeight = FontWeight.Bold,
@@ -59,7 +59,7 @@ fun TasksHomeScreenWidget(
                         text = "",
                         modifier = GlanceModifier
                             .size(22.dp)
-                            .background(ImageProvider(com.gdsc_vitbhopal.notegem.R.drawable.ic_add))
+                            .background(ImageProvider(R.drawable.ic_add))
                             .padding(8.dp)
                         ,
                         onClick = actionRunCallback<AddTaskAction>()
@@ -71,7 +71,7 @@ fun TasksHomeScreenWidget(
                 modifier = GlanceModifier
                     .fillMaxSize()
                     .padding(horizontal = 6.dp)
-                    .background(ImageProvider(com.gdsc_vitbhopal.notegem.R.drawable.large_inner_item_rounded))
+                    .background(ImageProvider(R.drawable.large_inner_item_rounded))
                     .cornerRadius(20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
@@ -83,7 +83,7 @@ fun TasksHomeScreenWidget(
                             style = TextStyle(
                                 color = ColorProvider(Color.White),
                                 fontWeight = FontWeight.Normal,
-                                fontSize = 18.sp,
+                                fontSize = 16.sp,
                                 textAlign = TextAlign.Center
                             )
                         )
