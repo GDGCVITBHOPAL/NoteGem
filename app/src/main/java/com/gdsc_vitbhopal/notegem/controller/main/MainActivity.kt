@@ -23,7 +23,9 @@ import androidx.navigation.navDeepLink
 import com.gdsc_vitbhopal.notegem.controller.bookmarks.BookmarkDetailsScreen
 import com.gdsc_vitbhopal.notegem.controller.bookmarks.BookmarkSearchScreen
 import com.gdsc_vitbhopal.notegem.controller.bookmarks.BookmarksScreen
+import com.gdsc_vitbhopal.notegem.controller.calendar.CalendarEventDetailsScreen
 import com.gdsc_vitbhopal.notegem.controller.calendar.CalendarScreen
+import com.gdsc_vitbhopal.notegem.controller.glance_widgets.eventJson
 import com.gdsc_vitbhopal.notegem.controller.grocery.GroceryChartScreen
 import com.gdsc_vitbhopal.notegem.controller.grocery.GroceryEntryDetailsScreen
 import com.gdsc_vitbhopal.notegem.controller.grocery.GroceryScreen
@@ -82,8 +84,7 @@ class MainActivity : ComponentActivity() {
                 else -> false
             }
 //            handleThemeChange(isDarkMode)
-            val color = MaterialTheme.colors.background
-            println("red: ${color.toArgb()}, green: ${color.green}, blue: ${color.blue}")
+
             SideEffect{
                 systemUiController.setSystemBarsColor(
                     if (isDarkMode) DarkBackground else Color.White,
@@ -230,9 +231,24 @@ class MainActivity : ComponentActivity() {
                                 }
                             )
                         ) {
-                            CalendarScreen()
+                            CalendarScreen(navController = navController)
                         }
-                        composable(Screen.CalendarSearchScreen.route) {}
+                        composable(
+                            Screen.CalendarEventDetailsScreen.route,
+                            arguments = listOf(navArgument(Constants.CALENDAR_EVENT_ARG) {
+                                type = NavType.StringType
+                            }),
+                            deepLinks = listOf(
+                                navDeepLink {
+                                    uriPattern = "${Constants.CALENDAR_DETAILS_SCREEN_URI}/{${Constants.CALENDAR_EVENT_ARG}}"
+                                }
+                            )
+                        ) {
+                            CalendarEventDetailsScreen(
+                                navController = navController,
+                                eventJson = it.arguments?.getString(Constants.CALENDAR_EVENT_ARG) ?: ""
+                            )
+                        }
                     }
                 }
             }

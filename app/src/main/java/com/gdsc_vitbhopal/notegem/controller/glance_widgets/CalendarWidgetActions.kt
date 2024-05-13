@@ -15,8 +15,12 @@ import com.gdsc_vitbhopal.notegem.util.Constants
 
 class AddEventAction : ActionCallback {
     suspend fun onRun(context: Context, glanceId: GlanceId, parameters: ActionParameters) {
-        val intent = Intent(Intent.ACTION_INSERT).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-        intent.type = "vnd.android.cursor.item/event"
+        val intent = Intent(
+            Intent.ACTION_VIEW,
+            "${Constants.CALENDAR_DETAILS_SCREEN_URI}/ ".toUri(),
+            context,
+            MainActivity::class.java
+        ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
     }
 
@@ -52,12 +56,13 @@ class NavigateToCalendarAction : ActionCallback {
 
 class CalendarWidgetItemClick : ActionCallback {
     suspend fun onRun(context: Context, glanceId: GlanceId, parameters: ActionParameters) {
-        parameters[eventIdKey]?.let {
-            val intent = Intent(Intent.ACTION_VIEW).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-            intent.data = ContentUris.withAppendedId(
-                CalendarContract.Events.CONTENT_URI,
-                it
-            )
+        parameters[eventJson]?.let {
+            val intent = Intent(
+                Intent.ACTION_VIEW,
+                "${Constants.CALENDAR_DETAILS_SCREEN_URI}/$it".toUri(),
+                context,
+                MainActivity::class.java
+            ).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
             context.startActivity(intent)
         }
     }
@@ -103,4 +108,4 @@ class RefreshCalendarAction : ActionCallback {
 }
 
 
-val eventIdKey = ActionParameters.Key<Long>("eventId")
+val eventJson = ActionParameters.Key<String>("eventJson")

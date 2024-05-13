@@ -26,6 +26,7 @@ import com.gdsc_vitbhopal.notegem.controller.glance_widgets.completed
 import com.gdsc_vitbhopal.notegem.controller.glance_widgets.taskId
 import com.gdsc_vitbhopal.notegem.domain.model.Task
 import com.gdsc_vitbhopal.notegem.util.date.formatDate
+import com.gdsc_vitbhopal.notegem.util.date.formatDateDependingOnDay
 import com.gdsc_vitbhopal.notegem.util.date.isDueDateOverdue
 import com.gdsc_vitbhopal.notegem.util.settings.Priority
 import com.gdsc_vitbhopal.notegem.util.settings.toPriority
@@ -83,7 +84,7 @@ fun TaskWidgetItem(
                     )
                     Spacer(GlanceModifier.width(3.dp))
                     Text(
-                        text = task.dueDate.formatDate(),
+                        text = task.dueDate.formatDateDependingOnDay(),
                         style = TextStyle(
                             color = if (task.dueDate.isDueDateOverdue()) ColorProvider(Color.Red) else ColorProvider(Color.White),
                             fontWeight = FontWeight.Bold,

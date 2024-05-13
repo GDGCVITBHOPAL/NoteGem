@@ -16,7 +16,9 @@ import com.gdsc_vitbhopal.notegem.controller.calendar.CalendarHomeWidget
 import com.gdsc_vitbhopal.notegem.controller.glance_widgets.TasksHomeWidget
 import com.gdsc_vitbhopal.notegem.controller.tasks.TasksHomeWidget
 import com.gdsc_vitbhopal.notegem.controller.util.Screen
+import com.gdsc_vitbhopal.notegem.domain.model.CalendarEvent
 import com.gdsc_vitbhopal.notegem.util.Constants
+import com.google.gson.Gson
 
 @Composable
 fun HomeScreen(
@@ -53,6 +55,22 @@ fun HomeScreen(
                     },
                     onPermission = {
                         viewModel.onHomeEvent(HomeEvent.ReadPermissionChanged(it))
+                    },
+                    onAddEventClicked = {
+                        navController.navigate(
+                            Screen.CalendarEventDetailsScreen.route.replace(
+                                "{${Constants.CALENDAR_EVENT_ARG}}",
+                                " "
+                            )
+                        )
+                    },
+                    onEventClicked = {
+                        navController.navigate(
+                            Screen.CalendarEventDetailsScreen.route.replace(
+                                "{${Constants.CALENDAR_EVENT_ARG}}",
+                                Gson().toJson(it, CalendarEvent::class.java)
+                            )
+                        )
                     }
                 )
             }

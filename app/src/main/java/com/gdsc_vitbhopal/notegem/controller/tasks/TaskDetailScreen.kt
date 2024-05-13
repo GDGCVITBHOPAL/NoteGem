@@ -27,6 +27,7 @@ import com.gdsc_vitbhopal.notegem.domain.model.SubTask
 import com.gdsc_vitbhopal.notegem.domain.model.Task
 import com.gdsc_vitbhopal.notegem.controller.util.Screen
 import com.gdsc_vitbhopal.notegem.util.date.formatDate
+import com.gdsc_vitbhopal.notegem.util.date.formatDateDependingOnDay
 import com.gdsc_vitbhopal.notegem.util.settings.Priority
 import com.gdsc_vitbhopal.notegem.util.settings.toInt
 import com.gdsc_vitbhopal.notegem.util.settings.toPriority
@@ -256,7 +257,7 @@ fun TaskDetailScreen(
                         )
                     }
                     Text(
-                        text = dueDate.formatDate(),
+                        text = dueDate.formatDateDependingOnDay(),
                         style = MaterialTheme.typography.body2
                     )
                 }

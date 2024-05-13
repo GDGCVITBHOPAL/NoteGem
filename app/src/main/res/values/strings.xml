@@ -14,6 +14,7 @@
     <string name="about">About</string>
     <string name="app_version">NoteGem Version</string>
     <string name="project_on_github">Source Code</string>
+    <string name="no_write_calendar_permission_message">Write Calendar permission required for this feature to be available.\nPlease grant the permission</string>
     <string name="Open_Source">NoteGem is an open source project !</string>
     <string name="privacy_policy">Privacy Policy</string>
     <string name="product">Product</string>
@@ -36,6 +37,16 @@
     <string name="request_feature_report_bug">Request a feature / Report a bug</string>
     <string name="low">Low</string>
     <string name="medium">Medium</string>
+    <string name="delete_event">Delete event</string>
+    <string name="location">Location</string>
+    <string name="do_not_repeat">Do not repeat</string>
+    <string name="every_day">Every day</string>
+    <string name="every_week">Every week</string>
+    <string name="every_month">Every month</string>
+    <string name="every_year">Every year</string>
+    <string name="error_future_event">Event should not be in the past</string>
+    <string name="delete_event_confirmation_title">Delete Event?</string>
+    <string name="delete_event_confirmation_message">Are you sure you want do delete this event?</string>
     <string name="high">High</string>
     <string name="due_date">Due date</string>
     <string name="delete_note_confirmation_message">Are you sure you want to delete the Note: \n \"%1$s\""</string>

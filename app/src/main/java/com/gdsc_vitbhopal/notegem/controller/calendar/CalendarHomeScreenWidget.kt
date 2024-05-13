@@ -15,23 +15,21 @@ import androidx.glance.text.Text
 import androidx.glance.text.TextAlign
 import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
-import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.app.getString
 import com.gdsc_vitbhopal.notegem.controller.glance_widgets.AddEventAction
 import com.gdsc_vitbhopal.notegem.controller.glance_widgets.GoToSettingsAction
 import com.gdsc_vitbhopal.notegem.controller.glance_widgets.NavigateToCalendarAction
 import com.gdsc_vitbhopal.notegem.controller.glance_widgets.RefreshCalendarAction
 import com.gdsc_vitbhopal.notegem.domain.model.CalendarEvent
-
 @Composable
 fun CalendarHomeScreenWidget(
     events: Map<String, List<CalendarEvent>>,
-    permissionGranted: Boolean = false,
+    permissionGranted: Boolean
 ) {
     Box(
         modifier = GlanceModifier
             .fillMaxWidth()
-            .background(ImageProvider(R.drawable.large_item_rounded))
+            .background(ImageProvider(com.gdsc_vitbhopal.notegem.R.drawable.large_item_rounded))
             .cornerRadius(25.dp)
     ) {
         Column(
@@ -45,7 +43,7 @@ fun CalendarHomeScreenWidget(
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Text(
-                    getString(R.string.calendar),
+                    getString(com.gdsc_vitbhopal.notegem.R.string.calendar),
                     style = TextStyle(
                         color = ColorProvider(Color.White),
                         fontWeight = FontWeight.Bold,
@@ -61,7 +59,7 @@ fun CalendarHomeScreenWidget(
                         text = "",
                         modifier = GlanceModifier
                             .size(22.dp)
-                            .background(ImageProvider(R.drawable.ic_refresh))
+                            .background(ImageProvider(com.gdsc_vitbhopal.notegem.R.drawable.ic_refresh))
                             .padding(8.dp)
                         ,
                         onClick = actionRunCallback<RefreshCalendarAction>()
@@ -71,7 +69,7 @@ fun CalendarHomeScreenWidget(
                         text = "",
                         modifier = GlanceModifier
                             .size(22.dp)
-                            .background(ImageProvider(R.drawable.ic_add))
+                            .background(ImageProvider(com.gdsc_vitbhopal.notegem.R.drawable.ic_add))
                             .padding(8.dp)
                         ,
                         onClick = actionRunCallback<AddEventAction>()
@@ -79,59 +77,60 @@ fun CalendarHomeScreenWidget(
                 }
             }
             Spacer(GlanceModifier.height(8.dp))
-            LazyColumn(
-                modifier = GlanceModifier
-                    .fillMaxSize()
-                    .background(ImageProvider(R.drawable.large_inner_item_rounded))
-                    .cornerRadius(20.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                if (permissionGranted) {
-                    if (events.isEmpty()) {
-                        item {
-                            Text(
-                                text = getString(R.string.no_events),
-                                modifier = GlanceModifier.padding(16.dp),
-                                style = TextStyle(
-                                    color = ColorProvider(Color.White),
-                                    fontWeight = FontWeight.Normal,
-                                    fontSize = 18.sp
-                                )
-                            )
-                        }
-                    } else {
-                        item { Spacer(GlanceModifier.height(6.dp))}
-                        events.forEach { (day, events) ->
-                            item {
-                                Column(
-                                    modifier = GlanceModifier
-                                        .fillMaxWidth()
-                                        .padding(start = 4.dp, end = 4.dp)
-                                ) {
+                    println("granted:::: $permissionGranted")
+                    if (permissionGranted) {
+                        LazyColumn(
+                            modifier = GlanceModifier
+                                .fillMaxSize()
+                                .background(ImageProvider(com.gdsc_vitbhopal.notegem.R.drawable.large_inner_item_rounded))
+                                .cornerRadius(20.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+                            if (events.isEmpty()) {
+                                item {
                                     Text(
-                                        text = day,
+                                        text = getString(com.gdsc_vitbhopal.notegem.R.string.no_events),
+                                        modifier = GlanceModifier.padding(16.dp),
                                         style = TextStyle(
                                             color = ColorProvider(Color.White),
                                             fontWeight = FontWeight.Normal,
-                                            fontSize = 14.sp
-                                        ),
-                                        modifier = GlanceModifier.padding(bottom = 3.dp)
+                                            fontSize = 18.sp
+                                        )
                                     )
-                                    events.forEach { event ->
-                                        CalendarEventWidgetItem(event = event)
+                                }
+                            } else {
+                                item { Spacer(GlanceModifier.height(6.dp))}
+                                events.forEach { (day, events) ->
+                                    item {
+                                        Column(
+                                            modifier = GlanceModifier
+                                                .fillMaxWidth()
+                                                .padding(start = 4.dp, end = 4.dp)
+                                        ) {
+                                            Text(
+                                                text = day,
+                                                style = TextStyle(
+                                                    color = ColorProvider(Color.White),
+                                                    fontWeight = FontWeight.Normal,
+                                                    fontSize = 14.sp
+                                                ),
+                                                modifier = GlanceModifier.padding(bottom = 3.dp)
+                                            )
+                                            events.forEach { event ->
+                                                CalendarEventWidgetItem(event = event)
+                                            }
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
-                } else {
-                    item {
+                    } else {
                         Column(
                             modifier = GlanceModifier.fillMaxSize(),
                             horizontalAlignment = Alignment.CenterHorizontally
                         ) {
                             Text(
-                                text = getString(R.string.no_read_calendar_permission_message),
+                                text = getString(com.gdsc_vitbhopal.notegem.R.string.no_read_calendar_permission_message),
                                 modifier = GlanceModifier.padding(16.dp),
                                 style = TextStyle(
                                     textAlign = TextAlign.Center
@@ -139,12 +138,12 @@ fun CalendarHomeScreenWidget(
                             )
                             Spacer(GlanceModifier.height(4.dp))
                             Button(
-                                text = getString(R.string.go_to_settings),
+                                text = getString(com.gdsc_vitbhopal.notegem.R.string.go_to_settings),
                                 onClick = actionRunCallback<GoToSettingsAction>()
                             )
                             Spacer(GlanceModifier.height(4.dp))
                             Text(
-                                text = getString(R.string.calendar_widget_refresh_message),
+                                text = getString(com.gdsc_vitbhopal.notegem.R.string.calendar_widget_refresh_message),
                                 modifier = GlanceModifier.padding(12.dp),
                                 style = TextStyle(
                                     textAlign = TextAlign.Center
@@ -155,5 +154,3 @@ fun CalendarHomeScreenWidget(
                 }
             }
         }
-    }
-}

@@ -19,9 +19,10 @@ import androidx.glance.text.TextStyle
 import androidx.glance.unit.ColorProvider
 import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.controller.glance_widgets.CalendarWidgetItemClick
-import com.gdsc_vitbhopal.notegem.controller.glance_widgets.eventIdKey
+import com.gdsc_vitbhopal.notegem.controller.glance_widgets.eventJson
 import com.gdsc_vitbhopal.notegem.domain.model.CalendarEvent
 import com.gdsc_vitbhopal.notegem.util.date.formatEventStartEnd
+import com.google.gson.Gson
 
 
 @Composable
@@ -34,7 +35,7 @@ fun CalendarEventWidgetItem(
             .clickable(
                 onClick = actionRunCallback<CalendarWidgetItemClick>(
                     parameters = actionParametersOf(
-                        eventIdKey to event.id
+                        eventJson to Gson().toJson(event, CalendarEvent::class.java)
                     )
                 )
             )

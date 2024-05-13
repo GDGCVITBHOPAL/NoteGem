@@ -21,9 +21,11 @@ object Constants {
     const val BOOKMARK_VIEW_KEY = "bookmark_view"
     const val NOTES_ORDER_KEY = "notes_order"
     const val TASKS_ORDER_KEY = "tasks_order"
+    const val CALENDAR_DETAILS_SCREEN_URI = "app://com.gdsc_vitbhopal.notegem/calendar_event_details"
     const val BOOKMARK_ORDER_KEY = "bookmark_order"
     const val EXCLUDED_CALENDARS_KEY = "excluded_calendars"
     const val GROCERY_ORDER_KEY = "grocery_order"
+    const val CALENDAR_EVENT_ARG = "calendar_event"
 
     // NavArgs
     const val TASK_ID_ARG = "task_id"

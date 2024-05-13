@@ -10,11 +10,17 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-fun Long.formatDate(): String {
+fun Long.formatDateDependingOnDay(): String {
     val sdf = if (DateUtils.isToday(this))
         SimpleDateFormat("h:mm a", Locale.getDefault())
     else
         SimpleDateFormat("MMM dd,yyyy h:mm a", Locale.getDefault())
+    return sdf.format(this)
+}
+
+
+fun Long.formatDate(): String {
+    val sdf = SimpleDateFormat("EEE, MMM dd, yyyy", Locale.getDefault())
     return sdf.format(this)
 }
 
