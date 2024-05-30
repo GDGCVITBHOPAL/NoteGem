@@ -20,6 +20,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.domain.model.Bookmark
+import com.gdsc_vitbhopal.notegem.util.bookmarks.isValidUrl
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -60,7 +61,7 @@ fun BookmarkItem(
             )
             IconButton(
                 onClick = {
-                    if (URLUtil.isValidUrl(bookmark.url)){
+                    if (bookmark.url.isValidUrl()){
                         val intent = Intent(Intent.ACTION_VIEW)
                         intent.data = Uri.parse(bookmark.url)
                         context.startActivity(intent)

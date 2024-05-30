@@ -8,6 +8,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.domain.model.Bookmark
+import com.gdsc_vitbhopal.notegem.util.bookmarks.isValidUrl
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +21,7 @@ class SaveBookmarkActivity : ComponentActivity() {
             if (intent.action == Intent.ACTION_SEND && intent.type == "text/plain") {
                 val url = intent.getStringExtra(Intent.EXTRA_TEXT)
                 if (!url.isNullOrBlank()) {
-                    if (URLUtil.isValidUrl(url)) {
+                    if (url.isValidUrl()) {
                         viewModel.onEvent(
                             BookmarkEvent.AddBookmark(
                                 Bookmark(

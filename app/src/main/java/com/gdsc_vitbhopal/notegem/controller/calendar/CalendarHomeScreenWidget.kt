@@ -77,7 +77,7 @@ fun CalendarHomeScreenWidget(
                 }
             }
             Spacer(GlanceModifier.height(8.dp))
-                    println("granted:::: $permissionGranted")
+//                    println("granted:::: $permissionGranted")
                     if (permissionGranted) {
                         LazyColumn(
                             modifier = GlanceModifier

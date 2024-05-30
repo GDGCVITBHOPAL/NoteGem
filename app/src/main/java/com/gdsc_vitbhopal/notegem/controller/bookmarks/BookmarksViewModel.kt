@@ -18,6 +18,7 @@ import com.gdsc_vitbhopal.notegem.domain.useCase.bookmarks.SearchBookmarksUseCas
 import com.gdsc_vitbhopal.notegem.domain.useCase.bookmarks.UpdateBookmarkUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.settings.GetSettingsUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.settings.SaveSettingsUseCase
+import com.gdsc_vitbhopal.notegem.util.bookmarks.isValidUrl
 import com.gdsc_vitbhopal.notegem.util.settings.ItemView
 import com.gdsc_vitbhopal.notegem.util.settings.Order
 import com.gdsc_vitbhopal.notegem.util.settings.OrderType
@@ -82,7 +83,7 @@ class BookmarksViewModel @Inject constructor(
                 )
                     uiState.copy(navigateUp = true)
                 else {
-                    if (URLUtil.isValidUrl(event.bookmark.url)) {
+                    if (event.bookmark.url.isValidUrl()) {
                         addBookmark(event.bookmark)
                         uiState.copy(navigateUp = true)
                     } else
@@ -102,7 +103,7 @@ class BookmarksViewModel @Inject constructor(
                 uiState = uiState.copy(searchBookmarks = bookmarks)
             }
             is BookmarkEvent.UpdateBookmark -> viewModelScope.launch {
-                uiState = if (!URLUtil.isValidUrl(event.bookmark.url)) {
+                uiState = if (!event.bookmark.url.isValidUrl()) {
                     uiState.copy(error = getString(R.string.invalid_url))
                 } else {
                     updateBookmark(event.bookmark.copy(updatedDate = System.currentTimeMillis()))

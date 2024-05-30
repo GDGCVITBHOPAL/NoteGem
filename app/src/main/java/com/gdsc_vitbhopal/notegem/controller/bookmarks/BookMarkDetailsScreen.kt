@@ -22,6 +22,7 @@ import androidx.navigation.NavHostController
 import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.domain.model.Bookmark
 import com.gdsc_vitbhopal.notegem.controller.util.Screen
+import com.gdsc_vitbhopal.notegem.util.bookmarks.isValidUrl
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
@@ -115,7 +116,7 @@ fun BookmarkDetailsScreen(
                             contentDescription = stringResource(R.string.delete_bookmark)
                         )
                     }
-                    if (URLUtil.isValidUrl(url))
+                    if (url.isValidUrl())
                         IconButton(onClick = {
                             val intent = Intent(Intent.ACTION_VIEW)
                             intent.data = Uri.parse(url)
