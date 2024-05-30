@@ -16,24 +16,28 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Color.Companion.LightGray
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.domain.model.CalendarEvent
+import com.gdsc_vitbhopal.notegem.ui.theme.LightBlueCard
+import com.gdsc_vitbhopal.notegem.ui.theme.ModerateBlueCard
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberPermissionState
 
 
 @OptIn(ExperimentalPermissionsApi::class)
 @Composable
-fun CalendarWidget(
+fun CalendarHomeWidget(
     modifier: Modifier = Modifier,
     events: Map<String, List<CalendarEvent>>,
     onPermission: (Boolean) -> Unit = {},
-    onClick: () -> Unit = {}
+    onClick: () -> Unit = {},
+    onAddEventClicked: () -> Unit = {},
+    onEventClicked: (CalendarEvent) -> Unit = {}
 ) {
     Card(
         shape = RoundedCornerShape(24.dp),
@@ -49,7 +53,6 @@ fun CalendarWidget(
         val isDark = !MaterialTheme.colors.isLight
         Column(
             modifier = modifier
-                .clickable { onClick() }
                 .padding(8.dp)
         ) {
             Row(
@@ -64,9 +67,7 @@ fun CalendarWidget(
                     modifier = Modifier
                         .size(18.dp)
                         .clickable {
-                            val intent = Intent(Intent.ACTION_INSERT)
-                            intent.type = "vnd.android.cursor.item/event"
-                            context.startActivity(intent)
+                            onAddEventClicked()
                         }
                 )
             }
@@ -75,7 +76,7 @@ fun CalendarWidget(
                 modifier = Modifier
                     .fillMaxSize()
                     .clip(RoundedCornerShape(20.dp))
-                    .background(if (isDark) Color.DarkGray else LightGray),
+                    .background(if (isDark) Color.DarkGray else LightBlueCard),
                 contentPadding = PaddingValues(vertical = 10.dp, horizontal = 8.dp),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
@@ -93,6 +94,7 @@ fun CalendarWidget(
                     } else {
                         events.forEach { (day, events) ->
                             item {
+                                LaunchedEffect(true) { onPermission(true) }
                                 Column(
                                     verticalArrangement = Arrangement.spacedBy(4.dp),
                                 ) {
@@ -101,13 +103,8 @@ fun CalendarWidget(
                                         style = MaterialTheme.typography.body2
                                     )
                                     events.forEach { event ->
-                                        CalendarEventWidgetItem(event = event, onClick = {
-                                            val intent = Intent(Intent.ACTION_VIEW)
-                                            intent.data = ContentUris.withAppendedId(
-                                                CalendarContract.Events.CONTENT_URI,
-                                                event.id
-                                            )
-                                            context.startActivity(intent)
+                                        CalendarEventSmallItem(event = event, onClick = {
+                                            onEventClicked(event)
                                         })
                                     }
                                 }

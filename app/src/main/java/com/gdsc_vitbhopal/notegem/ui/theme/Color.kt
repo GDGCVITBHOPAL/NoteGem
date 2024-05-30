@@ -26,7 +26,7 @@ val DarkBlueCard = Color(0xFF000033)
 val ModerateBlueCard = Color(0xFF0066CC)
 val DarkCard1 = Color(0xFF9A9EDB)
 val DarkCard2 = Color(0xFF3E809E)
-val LightBlueCard = Color(0xFF0583BE)
+val LightBlueCard = Color(0xFF9BBDD3)
 
 val itemColors = listOf(
     Red,

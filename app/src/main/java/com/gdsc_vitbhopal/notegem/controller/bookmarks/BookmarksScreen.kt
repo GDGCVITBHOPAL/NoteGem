@@ -206,7 +206,7 @@ fun BookmarksSettingsSection(
         bottomStart = 30.dp, // Adjust the radius as needed
         bottomEnd = 30.dp // Adjust the radius as needed
     )
-    Column (modifier = Modifier.background(MaterialTheme.colors.surface, shape = bottomRoundedCorner)
+    Column (modifier = Modifier.background(color = MaterialTheme.colors.surface, shape = bottomRoundedCorner)
         .padding(10.dp)){
         Text(
             text = stringResource(R.string.order_by),

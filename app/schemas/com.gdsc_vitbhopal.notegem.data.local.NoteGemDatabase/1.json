@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "8d332cbdcbee59504fc87c22384e60bd",
+    "identityHash": "3485da9a13ac9b721105f6d4e1273db1",
     "entities": [
       {
         "tableName": "notes",
@@ -142,7 +142,7 @@
       },
       {
         "tableName": "groceries",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`title` TEXT NOT NULL, `content` TEXT NOT NULL, `created_date` INTEGER NOT NULL, `updated_date` INTEGER NOT NULL, `mood` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`title` TEXT NOT NULL, `content` TEXT NOT NULL, `created_date` INTEGER NOT NULL, `updated_date` INTEGER NOT NULL, `id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL)",
         "fields": [
           {
             "fieldPath": "title",
@@ -165,12 +165,6 @@
           {
             "fieldPath": "updatedDate",
             "columnName": "updated_date",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "mood",
-            "columnName": "mood",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -270,7 +264,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8d332cbdcbee59504fc87c22384e60bd')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '3485da9a13ac9b721105f6d4e1273db1')"
     ]
   }
 }

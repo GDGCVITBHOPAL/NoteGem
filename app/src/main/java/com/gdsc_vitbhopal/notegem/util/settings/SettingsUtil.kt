@@ -5,7 +5,8 @@ import androidx.compose.ui.graphics.Color
 import com.gdsc_vitbhopal.notegem.R
 import com.gdsc_vitbhopal.notegem.app.getString
 import com.gdsc_vitbhopal.notegem.ui.theme.Green
-import com.gdsc_vitbhopal.notegem.ui.theme.Orange
+import androidx.compose.ui.text.font.FontFamily
+import com.gdsc_vitbhopal.notegem.ui.theme.Kanit
 import com.gdsc_vitbhopal.notegem.ui.theme.Red
 import com.gdsc_vitbhopal.notegem.ui.theme.Yellow
 
@@ -115,6 +116,36 @@ fun Order.toInt(): Int {
                 is Order.Priority -> 7
             }
         }
+    }
+}
+
+fun Int.toFontFamily(): FontFamily {
+    return when (this) {
+        0 -> FontFamily.Default
+        1 -> Kanit
+        2 -> FontFamily.Monospace
+        3 -> FontFamily.SansSerif
+        else -> FontFamily.Default
+    }
+}
+
+fun FontFamily.toInt(): Int {
+    return when (this) {
+        FontFamily.Default -> 0
+        Kanit -> 1
+        FontFamily.Monospace -> 2
+        FontFamily.SansSerif -> 3
+        else -> 0
+    }
+}
+
+fun FontFamily.getName(): String {
+    return when (this) {
+        FontFamily.Default -> getString(R.string.font_system_default)
+        Kanit -> "Rubik"
+        FontFamily.Monospace -> "Monospace"
+        FontFamily.SansSerif -> "Sans Serif"
+        else -> getString(R.string.font_system_default)
     }
 }
 

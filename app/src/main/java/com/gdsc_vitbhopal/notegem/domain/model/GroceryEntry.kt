@@ -13,7 +13,6 @@ data class GroceryEntry(
     val createdDate: Long = 0L,
     @ColumnInfo(name = "updated_date")
     val updatedDate: Long = 0L,
-    val mood: Mood,
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0
 )

@@ -6,10 +6,15 @@ import androidx.compose.runtime.setValue
 import androidx.datastore.preferences.core.stringSetPreferencesKey
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.gdsc_vitbhopal.notegem.R
+import com.gdsc_vitbhopal.notegem.app.getString
 import com.gdsc_vitbhopal.notegem.domain.model.Calendar
 import com.gdsc_vitbhopal.notegem.domain.model.CalendarEvent
+import com.gdsc_vitbhopal.notegem.domain.useCase.calendar.AddCalendarEventUseCase
+import com.gdsc_vitbhopal.notegem.domain.useCase.calendar.DeleteCalendarEventUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.calendar.GetAllCalendarsUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.calendar.GetAllEventsUseCase
+import com.gdsc_vitbhopal.notegem.domain.useCase.calendar.UpdateCalendarEventUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.settings.GetSettingsUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.settings.SaveSettingsUseCase
 import com.gdsc_vitbhopal.notegem.util.Constants
@@ -29,6 +34,9 @@ class CalendarViewModel @Inject constructor(
     private val getAllEventsUseCase: GetAllEventsUseCase,
     private val getAllCalendarsUseCase: GetAllCalendarsUseCase,
     private val saveSettings: SaveSettingsUseCase,
+    private val addEvent: AddCalendarEventUseCase,
+    private val editEvent: UpdateCalendarEventUseCase,
+    private val deleteEvent: DeleteCalendarEventUseCase,
     private val getSettings: GetSettingsUseCase
 ) : ViewModel() {
 
@@ -43,6 +51,39 @@ class CalendarViewModel @Inject constructor(
             is CalendarViewModelEvent.ReadPermissionChanged -> {
                 if (event.hasPermission) collectSettings()
                 else updateEventsJob?.cancel()
+            }
+            is CalendarViewModelEvent.AddEvent -> viewModelScope.launch {
+                uiState = if (event.event.title.isNotBlank()) {
+                    if (event.event.start > System.currentTimeMillis()) {
+                        addEvent(event.event)
+                        uiState.copy(navigateUp = true)
+                    } else {
+                        uiState.copy(error = getString(R.string.error_future_event))
+                    }
+                } else {
+                    uiState.copy(error = getString(R.string.error_empty_title))
+                }
+            }
+            is CalendarViewModelEvent.DeleteEvent -> viewModelScope.launch {
+                if (event.event.title.isNotBlank()) {
+                    deleteEvent(event.event)
+                    uiState = uiState.copy(navigateUp = true)
+                }
+            }
+            is CalendarViewModelEvent.EditEvent -> viewModelScope.launch {
+                uiState = if (event.event.title.isNotBlank()) {
+                    if (event.event.start > System.currentTimeMillis()) {
+                        editEvent(event.event)
+                        uiState.copy(navigateUp = true)
+                    } else {
+                        uiState.copy(error = getString(R.string.error_future_event))
+                    }
+                } else {
+                    uiState.copy(error = getString(R.string.error_empty_title))
+                }
+            }
+            CalendarViewModelEvent.ErrorDisplayed -> {
+                uiState = uiState.copy(error = null)
             }
         }
     }
@@ -64,6 +105,7 @@ class CalendarViewModel @Inject constructor(
         ).onEach { calendarsSet ->
             val events = getAllEventsUseCase(calendarsSet.toIntList())
             val calendars = getAllCalendarsUseCase(calendarsSet.toIntList())
+            val allCalendars = getAllCalendarsUseCase(emptyList())
             val months = events.map {
                 it.value.first().start.monthName()
             }.distinct()
@@ -71,7 +113,8 @@ class CalendarViewModel @Inject constructor(
                 excludedCalendars = calendarsSet.map { it.toInt() }.toMutableList(),
                 events = events,
                 calendars = calendars,
-                months = months
+                months = months,
+                calendarsList = allCalendars.values.flatten()
             )
         }.launchIn(viewModelScope)
     }
@@ -79,7 +122,10 @@ class CalendarViewModel @Inject constructor(
     data class UiState(
         val events: Map<String, List<CalendarEvent>> = emptyMap(),
         val calendars: Map<String, List<Calendar>> = emptyMap(),
+        val calendarsList: List<Calendar> = emptyList(),
         val excludedCalendars: MutableList<Int> = mutableListOf(),
-        val months: List<String> = emptyList()
+        val months: List<String> = emptyList(),
+        val navigateUp: Boolean = false,
+        val error: String? = null
     )
 }

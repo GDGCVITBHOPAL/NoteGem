@@ -13,6 +13,7 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -22,7 +23,9 @@ import androidx.navigation.navDeepLink
 import com.gdsc_vitbhopal.notegem.controller.bookmarks.BookmarkDetailsScreen
 import com.gdsc_vitbhopal.notegem.controller.bookmarks.BookmarkSearchScreen
 import com.gdsc_vitbhopal.notegem.controller.bookmarks.BookmarksScreen
+import com.gdsc_vitbhopal.notegem.controller.calendar.CalendarEventDetailsScreen
 import com.gdsc_vitbhopal.notegem.controller.calendar.CalendarScreen
+import com.gdsc_vitbhopal.notegem.controller.glance_widgets.eventJson
 import com.gdsc_vitbhopal.notegem.controller.grocery.GroceryChartScreen
 import com.gdsc_vitbhopal.notegem.controller.grocery.GroceryEntryDetailsScreen
 import com.gdsc_vitbhopal.notegem.controller.grocery.GroceryScreen
@@ -36,10 +39,13 @@ import com.gdsc_vitbhopal.notegem.controller.tasks.TasksSearchScreen
 import com.gdsc_vitbhopal.notegem.controller.util.Screen
 import com.gdsc_vitbhopal.notegem.ui.theme.BlueSurface
 import com.gdsc_vitbhopal.notegem.ui.theme.DarkBackground
+import com.gdsc_vitbhopal.notegem.ui.theme.Kanit
 import com.gdsc_vitbhopal.notegem.ui.theme.NoteGemTheme
 import com.gdsc_vitbhopal.notegem.util.Constants
 import com.gdsc_vitbhopal.notegem.util.settings.StartUpScreenSettings
 import com.gdsc_vitbhopal.notegem.util.settings.ThemeSettings
+import com.gdsc_vitbhopal.notegem.util.settings.toFontFamily
+import com.gdsc_vitbhopal.notegem.util.settings.toInt
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.first
@@ -56,7 +62,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            val themeMode = viewModel.themMode.collectAsState(initial = ThemeSettings.AUTO.value)
+            val themeMode = viewModel.themeMode.collectAsState(initial = ThemeSettings.AUTO.value)
+            val font = viewModel.font.collectAsState(initial = Kanit.toInt())
             var startUpScreenSettings by remember { mutableStateOf(StartUpScreenSettings.DASHBOARD.value) }
             val systemUiController = rememberSystemUiController()
             LaunchedEffect(true) {
@@ -77,13 +84,14 @@ class MainActivity : ComponentActivity() {
                 else -> false
             }
 //            handleThemeChange(isDarkMode)
+
             SideEffect{
                 systemUiController.setSystemBarsColor(
                     if (isDarkMode) DarkBackground else Color.White,
                     darkIcons = !isDarkMode
                 )
             }
-            NoteGemTheme(darkTheme = isDarkMode) {
+            NoteGemTheme(darkTheme = isDarkMode, fontFamily = font.value.toFontFamily()) {
                 val navController = rememberNavController()
                 if (!isDarkMode) {
                     LaunchedEffect(true) {
@@ -180,7 +188,7 @@ class MainActivity : ComponentActivity() {
                         composable(Screen.GrocerySearchScreen.route) {
                             GrocerySearchScreen(navController = navController)
                         }
-                        composable(Screen.DiaryChartScreen.route) {
+                        composable(Screen.GroceryChartScreen.route) {
                             GroceryChartScreen()
                         }
                         composable(
@@ -215,10 +223,32 @@ class MainActivity : ComponentActivity() {
                         composable(Screen.BookmarkSearchScreen.route) {
                             BookmarkSearchScreen(navController = navController)
                         }
-                        composable(Screen.CalendarScreen.route) {
-                            CalendarScreen()
+                        composable(
+                            Screen.CalendarScreen.route,
+                            deepLinks = listOf(
+                                navDeepLink {
+                                    uriPattern = Constants.CALENDAR_SCREEN_URI
+                                }
+                            )
+                        ) {
+                            CalendarScreen(navController = navController)
                         }
-                        composable(Screen.CalendarSearchScreen.route) {}
+                        composable(
+                            Screen.CalendarEventDetailsScreen.route,
+                            arguments = listOf(navArgument(Constants.CALENDAR_EVENT_ARG) {
+                                type = NavType.StringType
+                            }),
+                            deepLinks = listOf(
+                                navDeepLink {
+                                    uriPattern = "${Constants.CALENDAR_DETAILS_SCREEN_URI}/{${Constants.CALENDAR_EVENT_ARG}}"
+                                }
+                            )
+                        ) {
+                            CalendarEventDetailsScreen(
+                                navController = navController,
+                                eventJson = it.arguments?.getString(Constants.CALENDAR_EVENT_ARG) ?: ""
+                            )
+                        }
                     }
                 }
             }

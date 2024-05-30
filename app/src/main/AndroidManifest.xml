@@ -5,6 +5,7 @@
     <!-- For the Calendar events features -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.READ_CALENDAR"/>
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <!-- For reminders -->
     <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM"/>
     <uses-permission android:name="android.permission.USE_EXACT_ALARM"/>
@@ -44,25 +45,14 @@
             android:name=".util.alarms.TaskActionButtonBroadcastReceiver"
             android:enabled="true" />
 
-<!--        <service-->
-<!--            android:name=".controller.tasks.AddTaskTileService"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="true"-->
-<!--            android:label="@string/add_task"-->
-<!--            android:icon="@drawable/ic_check"-->
-<!--            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">-->
-<!--            <intent-filter>-->
-<!--                <action-->
-<!--                    android:name="android.service.quicksettings.action.QS_TILE"/>-->
-<!--            </intent-filter>-->
-<!--        </service>-->
         <activity
-            android:name=".presentation.bookmarks.SaveBookmarkActivity"
-            android:theme="@android:style/Theme.NoDisplay"
+            android:name=".controller.bookmarks.SaveBookmarkActivity"
             android:autoRemoveFromRecents="true"
             android:excludeFromRecents="true"
+            android:exported="true"
             android:noHistory="true"
-            android:exported="true">
+            android:theme="@android:style/Theme.NoDisplay"
+            >
             <intent-filter android:label="@string/save_bookmark">
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -71,12 +61,13 @@
         </activity>
 
         <activity
-            android:name=".domain.use_case.tasks.AddTaskFromShareActivity"
-            android:theme="@android:style/Theme.NoDisplay"
+            android:name=".domain.useCase.tasks.AddTaskFromShareActivity"
             android:autoRemoveFromRecents="true"
             android:excludeFromRecents="true"
+            android:exported="true"
             android:noHistory="true"
-            android:exported="true">
+            android:theme="@android:style/Theme.NoDisplay"
+            >
             <intent-filter android:label="@string/add_to_tasks">
                 <action android:name="android.intent.action.SEND" />
                 <category android:name="android.intent.category.DEFAULT" />
@@ -85,7 +76,7 @@
 
         </activity>
         <service
-            android:name=".presentation.tasks.AddTaskTileService"
+            android:name=".controller.tasks.AddTaskTileService"
             android:label="@string/add_task_to_notegem"
             android:icon="@drawable/ic_check"
             android:permission="android.permission.BIND_QUICK_SETTINGS_TILE"
@@ -94,6 +85,53 @@
                 <action android:name="android.service.quicksettings.action.QS_TILE" />
             </intent-filter>
         </service>
+
+
+        <!-- Calendar widget-->
+        <receiver
+            android:name=".controller.glance_widgets.CalendarWidgetReceiver"
+            android:enabled="@bool/glance_appwidget_available"
+            android:label="@string/calendar"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/calendar_widget_info" />
+        </receiver>
+
+        <!-- For updating the events in the  calendar widget when there are changes-->
+        <receiver
+            android:name=".controller.glance_widgets.RefreshCalendarWidgetReceiver"
+            android:enabled="@bool/glance_appwidget_available"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PROVIDER_CHANGED"/>
+                <data android:scheme="content"/>
+                <data android:host="com.android.calendar"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- Tasks widget-->
+        <receiver
+            android:name=".controller.glance_widgets.TasksWidgetReceiver"
+            android:enabled="@bool/glance_appwidget_available"
+            android:label="@string/tasks"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/tasks_widget_info" />
+        </receiver>
+
+        <receiver
+            android:name=".controller.glance_widgets.CompleteTaskWidgetReceiver"
+            android:enabled="@bool/glance_appwidget_available"
+            android:exported="false">
+        </receiver>
 
         <meta-data
             android:name="preloaded_fonts"

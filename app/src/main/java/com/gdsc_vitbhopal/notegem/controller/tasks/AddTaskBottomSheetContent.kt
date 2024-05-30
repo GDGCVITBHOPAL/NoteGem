@@ -26,6 +26,7 @@ import com.gdsc_vitbhopal.notegem.domain.model.SubTask
 import com.gdsc_vitbhopal.notegem.domain.model.Task
 import com.gdsc_vitbhopal.notegem.ui.theme.SettingTileColor
 import com.gdsc_vitbhopal.notegem.util.date.formatDate
+import com.gdsc_vitbhopal.notegem.util.date.formatDateDependingOnDay
 import com.gdsc_vitbhopal.notegem.util.settings.Priority
 import com.gdsc_vitbhopal.notegem.util.settings.toInt
 import com.gdsc_vitbhopal.notegem.util.settings.toPriority
@@ -169,7 +170,7 @@ fun AddTaskBottomSheetContent(
                     )
                 }
                 Text(
-                    text = dueDate.timeInMillis.formatDate(),
+                    text = dueDate.timeInMillis.formatDateDependingOnDay(),
                     style = MaterialTheme.typography.body2
                 )
             }

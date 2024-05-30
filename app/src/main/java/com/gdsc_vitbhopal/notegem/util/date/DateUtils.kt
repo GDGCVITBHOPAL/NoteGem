@@ -4,12 +4,13 @@ import android.text.format.DateUtils
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.gdsc_vitbhopal.notegem.R
+import com.gdsc_vitbhopal.notegem.app.getString
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 
-fun Long.formatDate(): String {
+fun Long.formatDateDependingOnDay(): String {
     val sdf = if (DateUtils.isToday(this))
         SimpleDateFormat("h:mm a", Locale.getDefault())
     else
@@ -17,9 +18,19 @@ fun Long.formatDate(): String {
     return sdf.format(this)
 }
 
+
+fun Long.formatDate(): String {
+    val sdf = SimpleDateFormat("EEE, MMM dd, yyyy", Locale.getDefault())
+    return sdf.format(this)
+}
+
 fun Long.fullDate(): String {
     val sdf = SimpleDateFormat("MMM dd,yyyy h:mm a", Locale.getDefault())
     return sdf.format(this)
+}
+
+fun Long.isDueDateOverdue(): Boolean {
+    return this < System.currentTimeMillis()
 }
 
 fun Long.formatDay(): String {
@@ -65,13 +76,13 @@ fun Long.isCurrentYear(): Boolean {
     return sdf.format(this) == sdf.format(Date())
 }
 
-@Composable
+
 fun formatEventStartEnd(start: Long, end: Long, location: String?, allDay: Boolean): String {
     return if (allDay)
-        stringResource(R.string.all_day)
+        getString(R.string.all_day)
     else
-        stringResource(
-            id = if (!location.isNullOrBlank())
+        getString(
+            if (!location.isNullOrBlank())
                 R.string.event_time_at
             else R.string.event_time,
             start.formatTime(),

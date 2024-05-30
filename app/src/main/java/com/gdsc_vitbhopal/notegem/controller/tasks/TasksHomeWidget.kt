@@ -1,5 +1,6 @@
 package com.gdsc_vitbhopal.notegem.controller.tasks
 
+import android.content.Intent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,16 +27,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Color.Companion.LightGray
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.gdsc_vitbhopal.notegem.R
+import com.gdsc_vitbhopal.notegem.controller.glance_widgets.TasksHomeWidget
 import com.gdsc_vitbhopal.notegem.domain.model.Task
+import com.gdsc_vitbhopal.notegem.ui.theme.LightBlueCard
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun TasksWidget(
+fun TasksHomeWidget(
     modifier: Modifier = Modifier,
     tasks: List<Task>,
     onTaskClick: (Task) -> Unit = {},
@@ -53,7 +57,6 @@ fun TasksWidget(
         val isDark = !MaterialTheme.colors.isLight
         Column(
             modifier = modifier
-                .clickable { onClick() }
                 .padding(8.dp)
         ) {
             Row(
@@ -69,9 +72,7 @@ fun TasksWidget(
                     stringResource(R.string.add_event),
                     modifier = Modifier
                         .size(18.dp)
-                        .clickable {
-                            onAddClick()
-                        }
+                        .clickable { onClick() }
                 )
             }
             Spacer(Modifier.height(8.dp))
@@ -79,7 +80,7 @@ fun TasksWidget(
                 modifier = Modifier
                     .fillMaxSize()
                     .clip(RoundedCornerShape(20.dp))
-                    .background(if (isDark) Color.DarkGray else LightGray),
+                    .background(if (isDark) Color.DarkGray else LightBlueCard),
                 contentPadding = PaddingValues(vertical = 8.dp),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
             ) {
@@ -87,13 +88,13 @@ fun TasksWidget(
                     item {
                         Text(
                             text = stringResource(R.string.no_tasks_today),
-                            style = MaterialTheme.typography.h6,
+                            style = MaterialTheme.typography.body2,
                             modifier = Modifier.fillMaxWidth(),
                             textAlign = TextAlign.Center
                         )
                     }
                 } else items(tasks) {
-                    TaskWidgetItem(
+                    TaskHomeItem(
                         task = it,
                         onClick = { onTaskClick(it) },
                         onComplete = { onCheck(it.copy(isCompleted = !it.isCompleted)) },

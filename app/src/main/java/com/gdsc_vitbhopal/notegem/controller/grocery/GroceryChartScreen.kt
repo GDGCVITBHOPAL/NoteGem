@@ -38,8 +38,8 @@ fun GroceryChartScreen(
             viewModel.onEvent(GroceryEvent.ChangeChartEntriesRange(it))
             monthly = it
         }
-        MoodCircularBar(entries = state.chartEntries)
-        MoodFlowChart(entries = state.chartEntries, monthly)
+//        MoodCircularBar(entries = state.chartEntries)
+//        MoodFlowChart(entries = state.chartEntries, monthly)
     }
 }
 

@@ -178,8 +178,8 @@ fun NotesSettingsSection(order: Order, view: ItemView, onOrderChange: (Order) ->
     val bottomRoundedCorner = RoundedCornerShape(
         topStart = 30.dp,
         topEnd = 30.dp,
-        bottomStart = 30.dp, // Adjust the radius as needed
-        bottomEnd = 30.dp // Adjust the radius as needed
+        bottomStart = 30.dp,
+        bottomEnd = 30.dp
     )
     Column (modifier = Modifier.background(MaterialTheme.colors.surface, shape = bottomRoundedCorner)
         .padding(10.dp)){

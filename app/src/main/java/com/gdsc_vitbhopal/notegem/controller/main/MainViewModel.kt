@@ -16,7 +16,9 @@ import com.gdsc_vitbhopal.notegem.domain.useCase.grocery.GetAllEntriesUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.settings.GetSettingsUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.tasks.GetAllTasksUseCase
 import com.gdsc_vitbhopal.notegem.domain.useCase.tasks.UpdateTaskUseCase
+import com.gdsc_vitbhopal.notegem.ui.theme.Kanit
 import com.gdsc_vitbhopal.notegem.util.Constants
+import com.gdsc_vitbhopal.notegem.util.date.inTheLastWeek
 import com.gdsc_vitbhopal.notegem.util.settings.StartUpScreenSettings
 import com.gdsc_vitbhopal.notegem.util.settings.ThemeSettings
 import com.gdsc_vitbhopal.notegem.util.settings.*
@@ -31,7 +33,7 @@ class MainViewModel @Inject constructor(
     private val getSettings: GetSettingsUseCase,
     private val getAllTasks: GetAllTasksUseCase,
     private val getAllEntriesUseCase: GetAllEntriesUseCase,
-    private val upDateTask: UpdateTaskUseCase,
+    private val updateTask: UpdateTaskUseCase,
     private val getAllEventsUseCase: GetAllEventsUseCase
 ) : ViewModel() {
 
@@ -40,9 +42,9 @@ class MainViewModel @Inject constructor(
 
     private var refreshTasksJob : Job? = null
 
-    val themMode = getSettings(intPreferencesKey(Constants.SETTINGS_THEME_KEY), ThemeSettings.AUTO.value)
+    val themeMode = getSettings(intPreferencesKey(Constants.SETTINGS_THEME_KEY), ThemeSettings.AUTO.value)
     val defaultStartUpScreen = getSettings(intPreferencesKey(Constants.DEFAULT_START_UP_SCREEN_KEY), StartUpScreenSettings.DASHBOARD.value)
-
+    val font = getSettings(intPreferencesKey(Constants.APP_FONT_KEY), Kanit.toInt())
     fun onHomeEvent(event: HomeEvent) {
         when(event) {
             is HomeEvent.ReadPermissionChanged -> {
@@ -50,7 +52,7 @@ class MainViewModel @Inject constructor(
                     getCalendarEvents()
             }
             is HomeEvent.UpdateTask -> viewModelScope.launch {
-                upDateTask(event.task)
+                updateTask(event.task)
             }
             HomeEvent.InitAll -> collectHomeData()
         }
@@ -95,15 +97,10 @@ class MainViewModel @Inject constructor(
 
     private fun refreshTasks(order: Order, showCompleted: Boolean) {
         refreshTasksJob?.cancel()
-        refreshTasksJob = getAllTasks(order)
-            .map { list ->
-                if (showCompleted)
-                    list
-                else
-                    list.filter { !it.isCompleted }
-            }.onEach { tasks ->
+        refreshTasksJob = getAllTasks(order).onEach { tasks ->
                 uiState = uiState.copy(
-                    homeTasks = tasks
+                    homeTasks = if (showCompleted) tasks else tasks.filter { !it.isCompleted },
+                    summaryTasks = tasks.filter { it.createdDate.inTheLastWeek() }
                 )
             }.launchIn(viewModelScope)
     }
